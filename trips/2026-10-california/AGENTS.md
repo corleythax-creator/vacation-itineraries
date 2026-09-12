@@ -106,8 +106,11 @@ below it.
 - Hour-by-hour schedules use native `<details>`/`<summary>` — no JS needed to expand.
 - **No `localStorage`, `sessionStorage`, or any browser storage.** The page is stateless by design.
 - Mobile breakpoint at 760px scales type **up** — these get read on phones.
-- **Hero sizing is deliberate.** The countdown column is `max-content` and the route map
-  is capped at 184px so the two sit as one cluster; the map's viewBox (`16 10 264 490`)
+- **Hero sizing is deliberate.** The countdown column is `minmax(0,max-content)` and the
+  route map is capped at 184px so the two sit as one cluster. The `minmax` matters: with
+  a plain `max-content` track the countdown never yields, so enlarged type (a wider font
+  than the fallback, or text-only zoom) crushes the map instead — at 1.8x it went down to
+  78px. Now the clock wraps, which it is built to do, and the map keeps its size; the map's viewBox (`16 10 264 490`)
   is cropped to the drawing's real bounds, and the stop labels are 15px in viewBox units
   so they still render ~11px at that size. Widening the map or restoring a fractional
   grid re-opens the ~250px of dead air this replaced. On mobile the countdown comes
