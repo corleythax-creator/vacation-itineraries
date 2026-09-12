@@ -39,6 +39,12 @@ decorative graphic drifting inside a track wider than itself. Size the text colu
 `max-content`, cap the graphic so its height lands near the text block's, and crop any
 SVG's `viewBox` to the drawing's real bounds.
 
+**Fill wide screens with content, not air.** Where a hero leaves a void on a wide
+screen, a short section can be grid-placed into it rather than sitting in a band of its
+own — California puts the hotels beside the countdown above 1080px. Do it with grid
+placement, never by moving the markup: source order stays the reading order for phones,
+narrow windows and screen readers.
+
 **Mobile first.** These get read on phones, standing in a parking lot. The mobile
 breakpoint at 760px scales type up, not down. The countdown comes before decorative
 artwork — a tall graphic stacked above it pushes the clock off the first screen.
@@ -57,7 +63,8 @@ Copy the most recent trip folder, then work through it in this order:
    carrying them forward.
 5. Open it at a desktop width and at ~390px. The countdown belongs above the fold on
    the phone, nothing should scroll sideways, and the map shouldn't tower over the text
-   beside it.
+   beside it. Above 1080px, check the band beside the hero — California's is sized for a
+   five-hotel list, and a much shorter one leaves the hero looking stranded again.
 6. Create a Vercel project pointed at the new trip's folder as its root directory.
 7. Add the trip to the table at the end of this README.
 
