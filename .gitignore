@@ -1,0 +1,8 @@
+.DS_Store
+.vercel
+node_modules/
+
+# Booking documents — these contain confirmation numbers and personal details.
+# Keep them out of the repo entirely.
+**/confirmations/
+*.pdf
