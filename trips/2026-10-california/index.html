@@ -31,7 +31,7 @@
   .masthead h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,46px);letter-spacing:-.03em;margin:0;line-height:1}
   .masthead p{margin:0;color:var(--sand);font-size:15px}
 
-  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center;padding:44px 0 12px}
+  .hero{display:grid;grid-template-columns:max-content auto;gap:40px;align-items:center;padding:30px 0 0}
   .lede{font-family:var(--display);font-weight:600;font-size:clamp(19px,2.4vw,23px);line-height:1.35;letter-spacing:-.015em;margin:0 0 26px;max-width:22ch}
   .clock{display:flex;gap:clamp(14px,3.4vw,30px);align-items:flex-end;flex-wrap:wrap}
   .unit{display:flex;flex-direction:column;gap:2px}
@@ -40,13 +40,13 @@
   .unit span{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--sand)}
   .hero-note{margin:22px 0 0;color:var(--sand);font-size:15px;max-width:36ch}
 
-  .coast{justify-self:center;width:100%;max-width:300px}
+  .coast{justify-self:start;width:100%;max-width:184px}
   .coast svg{width:100%;height:auto;display:block}
   .coastline{fill:none;stroke:var(--kelp);stroke-width:2;opacity:.55}
   .route{fill:none;stroke:var(--poppy);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 7}
   .stop{fill:var(--dusk);stroke:var(--poppy);stroke-width:2.5}
-  .stop-label{font-family:var(--display);font-size:11px;font-weight:600;fill:var(--fog)}
-  .sea{font-family:var(--body);font-style:italic;font-size:12px;fill:var(--kelp);opacity:.75}
+  .stop-label{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--fog)}
+  .sea{font-family:var(--body);font-style:italic;font-size:15px;fill:var(--kelp);opacity:.75}
   @media (prefers-reduced-motion:no-preference){
     .route{animation:draw 2.4s ease-out .3s both}
     @keyframes draw{from{stroke-dasharray:0 900}to{stroke-dasharray:4 7}}
@@ -131,8 +131,8 @@
 
   @media (max-width:760px){
     body{font-size:19px}
-    .hero{grid-template-columns:1fr;gap:30px;padding-top:34px}
-    .coast{max-width:230px;order:-1}
+    .hero{grid-template-columns:1fr;gap:24px;padding-top:24px}
+    .coast{justify-self:center;max-width:200px}
     .lede{font-size:21px}
     .hero-note{font-size:16px}
     .day{grid-template-columns:1fr;gap:10px}
@@ -183,7 +183,7 @@
     </div>
 
     <div class="coast" aria-hidden="true">
-      <svg viewBox="0 0 300 540" xmlns="http://www.w3.org/2000/svg" role="img">
+      <svg viewBox="16 10 264 490" xmlns="http://www.w3.org/2000/svg" role="img">
         <path class="coastline" d="M70 18 C88 52 98 74 104 100 C112 130 98 158 112 188 C124 214 132 240 146 268 C162 302 166 338 184 362 C208 392 238 404 272 406 C264 434 246 458 238 492"/>
         <path class="route" d="M104 100 C110 140 104 164 116 192 C128 220 136 244 148 268 C162 300 168 334 180 358 C204 386 224 398 244 414 C240 424 234 430 228 436"/>
         <g>

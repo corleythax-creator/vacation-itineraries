@@ -101,6 +101,13 @@ Live countdown → coast route SVG → flights → lodging → rental car → da
 - Hour-by-hour schedules use native `<details>`/`<summary>` — no JS needed to expand.
 - **No `localStorage`, `sessionStorage`, or any browser storage.** The page is stateless by design.
 - Mobile breakpoint at 760px scales type **up** — these get read on phones.
+- **Hero sizing is deliberate.** The countdown column is `max-content` and the route map
+  is capped at 184px so the two sit as one cluster; the map's viewBox (`16 10 264 490`)
+  is cropped to the drawing's real bounds, and the stop labels are 15px in viewBox units
+  so they still render ~11px at that size. Widening the map or restoring a fractional
+  grid re-opens the ~250px of dead air this replaced. On mobile the countdown comes
+  first and the map follows — don't put `order:-1` back on `.coast`, it pushed the clock
+  below the fold on a 390&times;844 phone.
 
 ### Countdown logic
 
