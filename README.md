@@ -33,8 +33,21 @@ stateless so they behave the same on every device the family opens them on.
 **Countdown uses fixed UTC instants**, not local time strings, so the clock reads
 correctly regardless of which time zone the viewer is in.
 
+**Content-sized layout.** Columns are sized to what's in them, not to fractions of the
+page. A `1.25fr .75fr` split leaves the short column floating in dead air and a
+decorative graphic drifting inside a track wider than itself. Size the text column to
+`max-content`, cap the graphic so its height lands near the text block's, and crop any
+SVG's `viewBox` to the drawing's real bounds.
+
+**Fill wide screens with content, not air.** Where a hero leaves a void on a wide
+screen, a short section can be grid-placed into it rather than sitting in a band of its
+own — California puts the hotels beside the countdown above 1080px. Do it with grid
+placement, never by moving the markup: source order stays the reading order for phones,
+narrow windows and screen readers.
+
 **Mobile first.** These get read on phones, standing in a parking lot. The mobile
-breakpoint at 760px scales type up, not down.
+breakpoint at 760px scales type up, not down. The countdown comes before decorative
+artwork — a tall graphic stacked above it pushes the clock off the first screen.
 
 ## Starting a new trip
 
@@ -42,10 +55,18 @@ Copy the most recent trip folder, then work through it in this order:
 
 1. Replace the trip facts — flights, lodging, day-by-day, mileage tables.
 2. Update the two UTC timestamps in the countdown script (departure and return).
-3. Update the route SVG stop labels, or drop the SVG if the trip isn't a road trip.
+3. Update the route SVG stop labels, or drop the SVG if the trip isn't a road trip. If
+   you move the stops, re-crop the `viewBox` to the drawing's bounds and keep the label
+   `font-size` in viewBox units large enough to land near 11px on screen — at the 184px
+   map width that's 15 units, not 11.
 4. Rewrite `AGENTS.md` for the new trip. Delete the old open items rather than
    carrying them forward.
-5. Create a Vercel project pointed at the new trip's folder as its root directory.
+5. Open it at a desktop width and at ~390px. The countdown belongs above the fold on
+   the phone, nothing should scroll sideways, and the map shouldn't tower over the text
+   beside it. Above 1080px, check the band beside the hero — California's is sized for a
+   five-hotel list, and a much shorter one leaves the hero looking stranded again.
+6. Create a Vercel project pointed at the new trip's folder as its root directory.
+7. Add the trip to the table at the end of this README.
 
 The California 2026 folder is the reference implementation. It has the fullest
 set of patterns: collapsible hour-by-hour schedules, must-do strips, "cut this

@@ -129,6 +129,24 @@
   .empty b{font-family:var(--display);font-size:15px;font-weight:600;color:var(--fog);display:block;margin-bottom:4px}
   footer{margin-top:46px;color:var(--sand);font-size:14px}
 
+  /* Wide desktop only: the hotels fill the space beside the hero instead of
+     sitting in a band of their own further down. Grid placement, not a DOM move —
+     source order is untouched, so phones and narrow windows still read
+     countdown, flights, then hotels. Row 1 is the masthead and row 2 the hero;
+     anything inserted above the masthead has to be re-placed here. */
+  @media (min-width:1080px){
+    .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);column-gap:40px;align-content:start}
+    .wrap>*{grid-column:1/-1}
+    .hero{grid-column:1;grid-row:2;align-self:start}
+    .coast{max-width:236px}  /* room to grow: the hotel column sets the band height */
+    .sleep{grid-column:2;grid-row:2;align-self:start;padding-top:30px}
+    .sleep h2{margin-top:0}
+    .sleep .stay{grid-template-columns:1fr auto;gap:3px 16px;padding:15px 0}
+    .sleep .stay .nights{grid-row:1;grid-column:1}
+    .sleep .stay .status{grid-row:1;grid-column:2;justify-self:end}
+    .sleep .stay .place{grid-row:2;grid-column:1/-1}
+  }
+
   @media (max-width:760px){
     body{font-size:19px}
     .hero{grid-template-columns:1fr;gap:24px;padding-top:24px}
@@ -241,32 +259,34 @@
     </div>
   </div>
 
-  <h2>Where you sleep</h2>
-  <div class="stay">
-    <div class="nights">Oct 2&ndash;4 &middot; 2 nights</div>
-    <div class="place">Hotel Caza Fisherman&rsquo;s Wharf<small>1300 Columbus Ave, San Francisco</small></div>
-    <div class="status">Booked</div>
-  </div>
-  <div class="stay">
-    <div class="nights">Oct 4&ndash;5 &middot; 1 night</div>
-    <div class="place">Home2 Suites at the Dunes<small>Monterey Bay &middot; 3 guests</small></div>
-    <div class="status">Booked</div>
-  </div>
-  <div class="stay">
-    <div class="nights">Oct 5&ndash;6 &middot; 1 night</div>
-    <div class="place">Corque Hotel, Solvang<small>Tribute Portfolio &middot; check-in 4:00 PM, out 11:00 AM</small></div>
-    <div class="status">Booked</div>
-  </div>
-  <div class="stay">
-    <div class="nights">Oct 6&ndash;7 &middot; 1 night</div>
-    <div class="place">Home2 Suites Anaheim Resort<small>Bash night &middot; out 11:00 AM Oct 7</small></div>
-    <div class="status">Booked</div>
-  </div>
-  <div class="stay">
-    <div class="nights">Oct 7&ndash;8 &middot; 1 night</div>
-    <div class="place">Hilton Santa Monica Hotel &amp; Suites<small>1707 4th St &middot; three blocks from the Pier</small></div>
-    <div class="status open">Not booked yet</div>
-  </div>
+  <section class="sleep">
+    <h2>Where you sleep</h2>
+    <div class="stay">
+      <div class="nights">Oct 2&ndash;4 &middot; 2 nights</div>
+      <div class="place">Hotel Caza Fisherman&rsquo;s Wharf<small>1300 Columbus Ave, San Francisco</small></div>
+      <div class="status">Booked</div>
+    </div>
+    <div class="stay">
+      <div class="nights">Oct 4&ndash;5 &middot; 1 night</div>
+      <div class="place">Home2 Suites at the Dunes<small>Monterey Bay &middot; 3 guests</small></div>
+      <div class="status">Booked</div>
+    </div>
+    <div class="stay">
+      <div class="nights">Oct 5&ndash;6 &middot; 1 night</div>
+      <div class="place">Corque Hotel, Solvang<small>Tribute Portfolio &middot; check-in 4:00 PM, out 11:00 AM</small></div>
+      <div class="status">Booked</div>
+    </div>
+    <div class="stay">
+      <div class="nights">Oct 6&ndash;7 &middot; 1 night</div>
+      <div class="place">Home2 Suites Anaheim Resort<small>Bash night &middot; out 11:00 AM Oct 7</small></div>
+      <div class="status">Booked</div>
+    </div>
+    <div class="stay">
+      <div class="nights">Oct 7&ndash;8 &middot; 1 night</div>
+      <div class="place">Hilton Santa Monica Hotel &amp; Suites<small>1707 4th St &middot; three blocks from the Pier</small></div>
+      <div class="status open">Not booked yet</div>
+    </div>
+  </section>
 
   <h2>The car</h2>
   <div class="stay">

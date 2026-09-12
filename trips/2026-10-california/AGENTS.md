@@ -93,6 +93,11 @@ Alcatraz, Hearst Castle, Beverly Hills, Griffith Observatory, Venice, Malibu. Th
 
 Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note) → driving and flight mileage tables → logistics notes → summary facts → open items.
 
+That is the source order, and it is what phones and windows under 1080px show. At
+1080px and up the lodging block is grid-placed into the space beside the hero, so the
+top of the page reads countdown / route map / hotels as one band and Flights starts
+below it.
+
 ### Architecture
 
 - Single `index.html`, ~48 KB, no framework, no dependencies, no build.
@@ -108,6 +113,12 @@ Live countdown → coast route SVG → flights → lodging → rental car → da
   grid re-opens the ~250px of dead air this replaced. On mobile the countdown comes
   first and the map follows — don't put `order:-1` back on `.coast`, it pushed the clock
   below the fold on a 390&times;844 phone.
+- **The lodging band above 1080px** is CSS only. `.wrap` becomes a two-column grid,
+  everything spans both columns, and `.hero` and `.sleep` are placed into row 2 — so the
+  hotels move without touching source order, and a screen reader still reads flights
+  before hotels. The placement is by row number and assumes the masthead is row 1 and
+  the hero row 2; inserting anything above the masthead breaks it. Inside that band the
+  map grows to 236px, since the hotel column, not the countdown, sets the band's height.
 
 ### Countdown logic
 
