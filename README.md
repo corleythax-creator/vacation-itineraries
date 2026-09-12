@@ -56,8 +56,14 @@ first" notes, mileage tables, and an open-items box.
 Each trip is its own Vercel project with the trip folder set as the root
 directory. Pushing to `main` redeploys whichever trips changed.
 
-Deployment protection must be off — these are meant to be opened by family members
-who don't have Vercel accounts.
+Framework preset is **Other**, with no build command and no install command —
+there is nothing to build. Deployment protection must be off, since these are
+meant to be opened by family members who don't have Vercel accounts.
+
+Note on migrating an existing project to git: connecting the repo does not
+retroactively build anything, and redeploying an older CLI-uploaded deployment
+will fail once Root Directory points at a trip folder that upload never
+contained. Push a commit to trigger the first git build.
 
 ## Trips
 
