@@ -150,6 +150,16 @@ in a private browser window.
 - Solvang Trolley — October departure times change seasonally and need confirming.
 - One-way drop fee on the SIXT rental — confirm it's already in the rate.
 
+**Dashboard wants** (not yet done)
+- Tighten the empty space around the countdown and the route map. The hero reads mostly
+  as dead air right now. Two causes: `.hero` is a two-column grid with
+  `align-items:center`, and the left column (lede, clock, note) is far shorter than the
+  300&times;540 route SVG, so it floats with gaps above and below; and the SVG's own
+  viewBox carries slack around a drawing that only spans roughly x 24&ndash;272,
+  y 18&ndash;492. Likely fixes: `align-items:start` or `stretch` on `.hero`, a smaller
+  `.coast` max-width, a tighter viewBox, and trimming the `padding:44px 0 12px`. Keep the
+  760px mobile breakpoint scaling type up, not down.
+
 **Conflicts between the itinerary PDF and the user's later messages** (page follows the user, not the PDF)
 - PDF puts San Francisco at the **Infinity Hotel, Marina District**; the user later said **Hotel Caza, Fisherman's Wharf**. Page uses Caza. Knock-on: the Pier 39 / Ghirardelli / Aquatic Park block is now walkable from the room, and Oct 3 dinner shifts from Chestnut Street to the Wharf or North Beach.
 - PDF's Oct 7 morning drives **Santa Monica → Universal**, but Santa Monica is that night's hotel. The real start is **Anaheim → Universal**, 33 miles. Page corrects this and adds the checkout-before-you-leave step, since bags ride along all day.
