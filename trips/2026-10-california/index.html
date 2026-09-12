@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>California, October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dusk:#10263A;--fog:#E9EEEC;--poppy:#F2A03D;--kelp:#2E8C7C;--sand:#C9B693;
+    --rule:rgba(233,238,236,.16);
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --body:"Newsreader",Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 80% at 78% -10%, rgba(242,160,61,.18), transparent 60%),
+      radial-gradient(90% 60% at 0% 100%, rgba(46,140,124,.16), transparent 65%),
+      var(--dusk);
+    color:var(--fog);font-family:var(--body);font-size:17px;line-height:1.6;font-weight:300;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 88px}
+  :focus-visible{outline:2px solid var(--poppy);outline-offset:3px;border-radius:2px}
+
+  .masthead{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:18px}
+  .masthead h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,46px);letter-spacing:-.03em;margin:0;line-height:1}
+  .masthead p{margin:0;color:var(--sand);font-size:15px}
+
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center;padding:44px 0 12px}
+  .lede{font-family:var(--display);font-weight:600;font-size:clamp(19px,2.4vw,23px);line-height:1.35;letter-spacing:-.015em;margin:0 0 26px;max-width:22ch}
+  .clock{display:flex;gap:clamp(14px,3.4vw,30px);align-items:flex-end;flex-wrap:wrap}
+  .unit{display:flex;flex-direction:column;gap:2px}
+  .num{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;font-size:clamp(46px,10vw,84px);line-height:.88;letter-spacing:-.05em;color:var(--poppy)}
+  .unit:not(:first-child) .num{font-size:clamp(26px,5vw,42px);color:var(--fog);opacity:.85}
+  .unit span{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--sand)}
+  .hero-note{margin:22px 0 0;color:var(--sand);font-size:15px;max-width:36ch}
+
+  .coast{justify-self:center;width:100%;max-width:300px}
+  .coast svg{width:100%;height:auto;display:block}
+  .coastline{fill:none;stroke:var(--kelp);stroke-width:2;opacity:.55}
+  .route{fill:none;stroke:var(--poppy);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 7}
+  .stop{fill:var(--dusk);stroke:var(--poppy);stroke-width:2.5}
+  .stop-label{font-family:var(--display);font-size:11px;font-weight:600;fill:var(--fog)}
+  .sea{font-family:var(--body);font-style:italic;font-size:12px;fill:var(--kelp);opacity:.75}
+  @media (prefers-reduced-motion:no-preference){
+    .route{animation:draw 2.4s ease-out .3s both}
+    @keyframes draw{from{stroke-dasharray:0 900}to{stroke-dasharray:4 7}}
+    .stop{animation:pop .5s ease-out both}
+  }
+  @keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+
+  h2{font-family:var(--display);font-weight:600;font-size:15px;color:var(--sand);margin:56px 0 0;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+
+  .day{display:grid;grid-template-columns:112px 1fr;gap:0 26px;padding:30px 0;border-bottom:1px solid var(--rule)}
+  .when{font-family:var(--display);line-height:1.25;padding-top:3px}
+  .when b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em}
+  .when i{display:block;font-style:normal;font-size:13px;font-weight:500;color:var(--sand)}
+  .day h3{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.02em;margin:0 0 6px}
+  .day p{margin:0;max-width:62ch;color:rgba(233,238,236,.86)}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tag{font-family:var(--display);font-size:12.5px;font-weight:500;border:1px solid var(--rule);border-radius:999px;padding:4px 11px;color:var(--sand)}
+  .tag.drive{border-color:rgba(46,140,124,.55);color:#7FD3C2}
+  .tag.park{border-color:rgba(242,160,61,.5);color:var(--poppy)}
+  .tag.bash{border-color:rgba(123,87,168,.7);color:#C4A5E6;background:rgba(123,87,168,.14)}
+  .tag.fly{border-color:rgba(233,238,236,.4);color:var(--fog)}
+  .flag{margin-top:14px;border-left:2px solid var(--poppy);padding:2px 0 2px 14px;color:var(--sand);font-size:15px;max-width:58ch}
+  .day.today{background:linear-gradient(90deg,rgba(242,160,61,.1),transparent 70%);margin:0 -16px;padding-left:16px;padding-right:16px}
+
+  details{margin-top:18px}
+  summary{
+    font-family:var(--display);font-size:13.5px;font-weight:600;color:var(--poppy);
+    cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid rgba(242,160,61,.4);border-radius:999px;padding:5px 14px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-weight:800}
+  details[open] summary::after{content:"\2212"}
+  .slots{list-style:none;margin:18px 0 0;padding:0;max-width:66ch}
+  .slots li{display:grid;grid-template-columns:118px 1fr;gap:0 18px;padding:9px 0;border-top:1px solid rgba(233,238,236,.09)}
+  .slots li:first-child{border-top:none}
+  .slots .t{font-family:var(--display);font-size:13px;font-weight:600;color:var(--sand);padding-top:3px;font-variant-numeric:tabular-nums}
+  .slots .s{font-size:16px;color:rgba(233,238,236,.88);line-height:1.5}
+  .slots .s b{font-weight:400;color:var(--poppy);font-family:var(--display);font-size:12.5px;display:block;letter-spacing:.01em}
+  .musts{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+  .musts li{font-family:var(--display);font-size:12.5px;font-weight:500;color:var(--poppy);border:1px solid rgba(242,160,61,.32);border-radius:6px;padding:4px 10px;background:rgba(242,160,61,.07)}
+
+  .flights{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px}
+  .journey h4{font-family:var(--display);font-size:14px;font-weight:600;color:var(--sand);margin:0 0 14px}
+  .leg{padding:16px 0;border-top:1px solid var(--rule)}
+  .leg:last-child{border-bottom:1px solid var(--rule)}
+  .leg-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .flt{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:-.01em}
+  .dur{font-family:var(--display);font-size:12.5px;color:var(--sand)}
+  .times{display:flex;align-items:baseline;gap:12px;margin-top:8px;font-family:var(--display)}
+  .times b{font-size:23px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .line{flex:1;height:1px;background:var(--rule);min-width:14px}
+  .ports{display:flex;justify-content:space-between;font-size:14px;color:var(--sand);margin-top:2px}
+  .seats{font-family:var(--display);font-size:12.5px;color:var(--sand);margin-top:9px}
+  .layover{font-family:var(--display);font-size:12.5px;color:var(--poppy);padding:9px 0 0}
+
+  .stay{display:grid;grid-template-columns:130px 1fr auto;gap:4px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)}
+  .stay .nights{font-family:var(--display);font-size:14px;font-weight:600;color:var(--sand)}
+  .stay .place{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.015em}
+  .stay .place small{display:block;font-family:var(--body);font-weight:300;font-size:15px;color:var(--sand);letter-spacing:0}
+  .stay .status{font-family:var(--display);font-size:12.5px;color:var(--kelp)}
+  .stay .status.open{color:var(--poppy)}
+
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-variant-numeric:tabular-nums}
+  th{font-family:var(--display);font-size:12.5px;font-weight:600;color:var(--sand);text-align:left;padding:12px 8px 12px 0;border-bottom:1px solid var(--rule)}
+  th:last-child,td:last-child{text-align:right;padding-right:0}
+  td{padding:11px 8px 11px 0;border-bottom:1px solid rgba(233,238,236,.08);font-size:16px}
+  td.leglabel{color:rgba(233,238,236,.9)}
+  td.day-col{font-family:var(--display);font-size:13px;color:var(--sand);white-space:nowrap}
+  tr.total td{font-family:var(--display);font-weight:800;font-size:19px;border-bottom:none;border-top:1px solid var(--rule);color:var(--poppy);padding-top:14px}
+  .mileage-note{margin-top:16px;color:var(--sand);font-size:15px;max-width:60ch}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;margin-top:30px}
+  .fact b{display:block;font-family:var(--display);font-size:13px;font-weight:600;color:var(--sand);margin-bottom:5px}
+  .fact p{margin:0;font-size:17px}
+  .notes{margin:24px 0 0;padding:0;list-style:none;max-width:70ch}
+  .notes li{padding:10px 0 10px 18px;border-top:1px solid rgba(233,238,236,.09);position:relative;color:rgba(233,238,236,.86);font-size:16px}
+  .notes li::before{content:"";position:absolute;left:0;top:20px;width:6px;height:1px;background:var(--poppy)}
+  .empty{margin-top:34px;border:1px dashed var(--rule);border-radius:10px;padding:20px 22px;color:var(--sand);font-size:16px}
+  .empty b{font-family:var(--display);font-size:15px;font-weight:600;color:var(--fog);display:block;margin-bottom:4px}
+  footer{margin-top:46px;color:var(--sand);font-size:14px}
+
+  @media (max-width:760px){
+    body{font-size:19px}
+    .hero{grid-template-columns:1fr;gap:30px;padding-top:34px}
+    .coast{max-width:230px;order:-1}
+    .lede{font-size:21px}
+    .hero-note{font-size:16px}
+    .day{grid-template-columns:1fr;gap:10px}
+    .when{display:flex;align-items:baseline;gap:10px;padding-top:0}
+    .when b{font-size:23px}
+    .when i{font-size:14px}
+    .day h3{font-size:22px}
+    .day p{font-size:18px}
+    .tag{font-size:13.5px;padding:5px 12px}
+    .flag{font-size:16.5px}
+    .flights{grid-template-columns:1fr;gap:26px}
+    .stay{grid-template-columns:1fr;gap:3px}
+    .stay .place{font-size:19px}
+    .stay .place small{font-size:16px}
+    .stay .nights,.stay .status{font-size:13.5px}
+    summary{font-size:14.5px}
+    .slots li{grid-template-columns:92px 1fr;gap:0 12px}
+    .slots .t{font-size:13px}
+    .slots .s{font-size:17px}
+    .slots .s b{font-size:13.5px}
+    .musts li{font-size:13.5px}
+    .fact p{font-size:18px}
+    .notes li{font-size:17px}
+    .mileage-note{font-size:16px}
+    td,th{font-size:16px}
+    h2{font-size:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>Jackson to California</h1>
+    <p>October 2&ndash;8, 2026 &nbsp;/&nbsp; Corley, Jessica and Dexter</p>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="lede" id="lede">Seven days down the coast, ending with a Halloween party at Disney.</p>
+      <div class="clock" aria-live="polite" aria-atomic="true">
+        <div class="unit"><div class="num" id="d">&mdash;</div><span id="dl">days</span></div>
+        <div class="unit"><div class="num" id="h">&mdash;</div><span>hours</span></div>
+        <div class="unit"><div class="num" id="m">&mdash;</div><span>minutes</span></div>
+        <div class="unit"><div class="num" id="s">&mdash;</div><span>seconds</span></div>
+      </div>
+      <p class="hero-note" id="heroNote">Until UA 4348 pushes back from Jackson, 5:20 PM on Oct 2.</p>
+    </div>
+
+    <div class="coast" aria-hidden="true">
+      <svg viewBox="0 0 300 540" xmlns="http://www.w3.org/2000/svg" role="img">
+        <path class="coastline" d="M70 18 C88 52 98 74 104 100 C112 130 98 158 112 188 C124 214 132 240 146 268 C162 302 166 338 184 362 C208 392 238 404 272 406 C264 434 246 458 238 492"/>
+        <path class="route" d="M104 100 C110 140 104 164 116 192 C128 220 136 244 148 268 C162 300 168 334 180 358 C204 386 224 398 244 414 C240 424 234 430 228 436"/>
+        <g>
+          <circle class="stop" cx="104" cy="100" r="5.5" style="animation-delay:.6s"/>
+          <circle class="stop" cx="116" cy="192" r="5.5" style="animation-delay:.9s"/>
+          <circle class="stop" cx="148" cy="268" r="5.5" style="animation-delay:1.2s"/>
+          <circle class="stop" cx="180" cy="358" r="5.5" style="animation-delay:1.5s"/>
+          <circle class="stop" cx="244" cy="414" r="5.5" style="animation-delay:1.8s"/>
+          <circle class="stop" cx="228" cy="436" r="5.5" style="animation-delay:2.1s"/>
+        </g>
+        <text class="stop-label" x="118" y="96">San Francisco</text>
+        <text class="stop-label" x="130" y="188">Monterey</text>
+        <text class="stop-label" x="162" y="264">Big Sur</text>
+        <text class="stop-label" x="194" y="354">Solvang</text>
+        <text class="stop-label" x="180" y="404">Anaheim</text>
+        <text class="stop-label" x="124" y="452">Santa Monica</text>
+        <text class="sea" x="24" y="250">Pacific</text>
+      </svg>
+    </div>
+  </section>
+
+  <h2>Flights</h2>
+  <div class="flights">
+    <div class="journey">
+      <h4>Out &mdash; Friday, Oct 2</h4>
+      <div class="leg">
+        <div class="leg-top"><span class="flt">UA 4348</span><span class="dur">1h 35m &middot; United Express</span></div>
+        <div class="times"><b>5:20 PM</b><span class="line"></span><b>6:55 PM</b></div>
+        <div class="ports"><span>JAN &middot; Jackson</span><span>IAH &middot; Houston</span></div>
+        <div class="seats">Jessica 10A &middot; Corley 10C &middot; Dexter 10D</div>
+      </div>
+      <div class="layover">46 minutes to connect at Houston</div>
+      <div class="leg">
+        <div class="leg-top"><span class="flt">UA 1202</span><span class="dur">4h 9m &middot; United</span></div>
+        <div class="times"><b>7:41 PM</b><span class="line"></span><b>9:50 PM</b></div>
+        <div class="ports"><span>IAH &middot; Houston</span><span>SFO &middot; San Francisco</span></div>
+        <div class="seats">Row 30 &mdash; Jessica in 30C</div>
+      </div>
+    </div>
+    <div class="journey">
+      <h4>Home &mdash; Thursday, Oct 8</h4>
+      <div class="leg">
+        <div class="leg-top"><span class="flt">UA 1084</span><span class="dur">3h 26m &middot; United</span></div>
+        <div class="times"><b>1:08 PM</b><span class="line"></span><b>6:34 PM</b></div>
+        <div class="ports"><span>LAX &middot; Los Angeles</span><span>IAH &middot; Houston</span></div>
+        <div class="seats">Jessica 30C &middot; Corley 30B &middot; Dexter 30A</div>
+      </div>
+      <div class="layover">1h 51m to connect at Houston</div>
+      <div class="leg">
+        <div class="leg-top"><span class="flt">UA 4320</span><span class="dur">1h 33m &middot; United Express</span></div>
+        <div class="times"><b>8:25 PM</b><span class="line"></span><b>9:58 PM</b></div>
+        <div class="ports"><span>IAH &middot; Houston</span><span>JAN &middot; Jackson</span></div>
+        <div class="seats">Jessica 10A &middot; Corley 10C &middot; Dexter 10D</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Where you sleep</h2>
+  <div class="stay">
+    <div class="nights">Oct 2&ndash;4 &middot; 2 nights</div>
+    <div class="place">Hotel Caza Fisherman&rsquo;s Wharf<small>1300 Columbus Ave, San Francisco</small></div>
+    <div class="status">Booked</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Oct 4&ndash;5 &middot; 1 night</div>
+    <div class="place">Home2 Suites at the Dunes<small>Monterey Bay &middot; 3 guests</small></div>
+    <div class="status">Booked</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Oct 5&ndash;6 &middot; 1 night</div>
+    <div class="place">Corque Hotel, Solvang<small>Tribute Portfolio &middot; check-in 4:00 PM, out 11:00 AM</small></div>
+    <div class="status">Booked</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Oct 6&ndash;7 &middot; 1 night</div>
+    <div class="place">Home2 Suites Anaheim Resort<small>Bash night &middot; out 11:00 AM Oct 7</small></div>
+    <div class="status">Booked</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Oct 7&ndash;8 &middot; 1 night</div>
+    <div class="place">Hilton Santa Monica Hotel &amp; Suites<small>1707 4th St &middot; three blocks from the Pier</small></div>
+    <div class="status open">Not booked yet</div>
+  </div>
+
+  <h2>The car</h2>
+  <div class="stay">
+    <div class="nights">Oct 2 &middot; pickup</div>
+    <div class="place">SIXT &mdash; SFO Rental Car Center<small>780 N McDonnell Rd &middot; AirTrain Blue Line from the terminal</small></div>
+    <div class="status">10:30 PM</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Oct 8 &middot; return</div>
+    <div class="place">SIXT &mdash; LAX<small>5251 W 98th St &middot; off-airport, shuttle to the terminal</small></div>
+    <div class="status">11:00 AM</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Vehicle</div>
+    <div class="place">Midsize SUV<small>Toyota RAV4 or similar &middot; automatic &middot; 5 seats, 4 bags</small></div>
+    <div class="status">Booked</div>
+  </div>
+  <div class="flag">The LAX return is not in the terminal garage. It&rsquo;s a branch on W 98th St with a shuttle, so the return is not finished when you hand over the keys &mdash; budget for the shuttle ride on a morning with a 1:08 PM flight.</div>
+  <p class="mileage-note">The booking is in Jessica&rsquo;s name, so she has to be the one at the counter, with her own license and a credit card in her name. Adding Corley as a second driver is done there, not online.</p>
+
+  <h2>Day by day</h2>
+
+  <!-- OCT 2 -->
+  <article class="day" data-date="2026-10-02">
+    <div class="when"><b>Oct 2</b><i>Friday</i></div>
+    <div>
+      <h3>Fly out to San Francisco</h3>
+      <p>Jackson to Houston to SFO, landing at 9:50 PM Pacific. That is 11:50 PM body-clock time for Dexter, so the night is baggage claim, the rental counter and the drive to the Wharf.</p>
+      <div class="meta"><span class="tag fly">JAN 5:20 PM</span><span class="tag fly">SFO 9:50 PM</span><span class="tag drive">14 miles to the hotel</span></div>
+      <div class="flag">The Houston connection is 46 minutes and UA 4348 arrives on a regional jet. Check the gate for UA 1202 before you land and walk straight there.</div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">3:30 PM</span><span class="s">At JAN. Small airport, but it is a holiday-weekend Friday.</span></li>
+          <li><span class="t">5:20 PM</span><span class="s">UA 4348 departs Jackson</span></li>
+          <li><span class="t">6:55 PM</span><span class="s">Land Houston. Check the gate on the app before the seatbelt sign goes off.</span></li>
+          <li><span class="t">7:41 PM</span><span class="s">UA 1202 departs for San Francisco</span></li>
+          <li><span class="t">9:50 PM</span><span class="s">Land SFO &mdash; 11:50 PM at home</span></li>
+          <li><span class="t">10:00&ndash;10:45</span><span class="s">Bags, AirTrain Blue Line to the Rental Car Center, pick up the SIXT car.<b>Pickup is booked for 10:30 PM, which lines up with the landing &mdash; if the flight slips, call SIXT rather than assuming they&rsquo;ll wait</b></span></li>
+          <li><span class="t">~11:15 PM</span><span class="s">Check in at Hotel Caza. Straight to bed.<b>Ask about the parking garage rate at check-in</b></span></li>
+        </ol>
+      </details>
+    </div>
+  </article>
+
+  <!-- OCT 3 -->
+  <article class="day" data-date="2026-10-03">
+    <div class="when"><b>Oct 3</b><i>Saturday</i></div>
+    <div>
+      <h3>Full day in San Francisco</h3>
+      <p>The one whole city day. Rideshare between neighborhoods in the morning and leave the rental parked &mdash; hunting for street parking is the fastest way to lose two hours. The afternoon block is all walkable from Caza.</p>
+      <div class="meta"><span class="tag">Walking-heavy day</span><span class="tag drive">Car stays parked</span><span class="tag">Alcatraz deliberately skipped</span></div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">7:00&ndash;8:00</span><span class="s">Wake, quick breakfast. Keep it efficient &mdash; the point is an early start.</span></li>
+          <li><span class="t">8:00&ndash;8:30</span><span class="s">Rideshare to Alamo Square</span></li>
+          <li><span class="t">8:30&ndash;9:15</span><span class="s">Painted Ladies and Alamo Square. Shoot from the east side of the park for the postcard view with the skyline behind. These are private homes &mdash; stay on public paths.</span></li>
+          <li><span class="t">9:15&ndash;9:35</span><span class="s">Rideshare to the top of Lombard</span></li>
+          <li><span class="t">9:35&ndash;10:10</span><span class="s">Lombard Street. Walk the crooked block and shoot from top and bottom. Don&rsquo;t queue to drive it.</span></li>
+          <li><span class="t">10:10&ndash;10:40</span><span class="s">North Beach and Washington Square &mdash; a short taste of the Italian quarter</span></li>
+          <li><span class="t">10:40&ndash;11:20</span><span class="s">Cable car toward the Wharf.<b>If the line is an hour, take a rideshare instead &mdash; the ride is the point, not the queue</b></span></li>
+          <li><span class="t">11:20&ndash;11:45</span><span class="s">Sea lions at K-Dock, Pier 39</span></li>
+          <li><span class="t">11:45&ndash;12:30</span><span class="s">Pier 39 &mdash; bay views, street performers, shops</span></li>
+          <li><span class="t">12:30&ndash;1:15</span><span class="s">Lunch at Boudin Bakery. Clam chowder in a sourdough bowl. Keep it to 45 minutes.</span></li>
+          <li><span class="t">1:15&ndash;2:00</span><span class="s">Ghirardelli Square for chocolate. Dessert stop, not a shopping trip.</span></li>
+          <li><span class="t">2:00&ndash;3:00</span><span class="s">Aquatic Park and the waterfront walk. Slow the pace down.</span></li>
+          <li><span class="t">3:00&ndash;4:00</span><span class="s">Flex hour &mdash; more Wharf, an arcade stop, coffee, or back to the room. This is the buffer that keeps the day from feeling rushed.</span></li>
+          <li><span class="t">4:00&ndash;5:00</span><span class="s">Back to the hotel. Rest and recharge.</span></li>
+          <li><span class="t">5:30&ndash;7:00</span><span class="s">Dinner near the hotel &mdash; the Wharf or North Beach rather than downtown</span></li>
+          <li><span class="t">7:00&ndash;8:00</span><span class="s">Optional evening walk if anyone still has legs</span></li>
+          <li><span class="t">8:30&ndash;9:00</span><span class="s">Wind down. Tomorrow is the biggest sightseeing day of the trip.</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Painted Ladies</li><li>Lombard Street</li><li>Cable car</li><li>Pier 39 sea lions</li><li>Boudin bread bowl</li><li>Ghirardelli Square</li>
+      </ul>
+      <div class="flag">Comfortable shoes and a light jacket for everyone. San Francisco turns cold and windy near the water with no warning, especially late afternoon.</div>
+    </div>
+  </article>
+
+  <!-- OCT 4 -->
+  <article class="day" data-date="2026-10-04">
+    <div class="when"><b>Oct 4</b><i>Sunday</i></div>
+    <div>
+      <h3>Golden Gate, then 17-Mile Drive to Monterey</h3>
+      <p>Three different views of the bridge before lunch, then south to Pebble Beach. This is the fullest day on the board and it only works if you are out the door by 8:10.</p>
+      <div class="meta"><span class="tag drive">165 miles</span><span class="tag">Battery Spencer</span><span class="tag park">17-Mile Drive, $12.50 per car</span></div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">7:00&ndash;7:45</span><span class="s">Wake, pack the car completely before any sightseeing. Jackets, water, snacks and cameras stay reachable.</span></li>
+          <li><span class="t">7:45&ndash;8:10</span><span class="s">Quick breakfast. Check out.</span></li>
+          <li><span class="t">8:10&ndash;8:35</span><span class="s">North across the bridge to Conzelman Road and Battery Spencer</span></li>
+          <li><span class="t">8:35&ndash;9:10</span><span class="s">Battery Spencer &mdash; the classic elevated shot of the bridge with the city behind it.<b>Parking is tiny; going first thing is the whole strategy</b></span></li>
+          <li><span class="t">9:10&ndash;9:35</span><span class="s">Back across the bridge, which is its own experience</span></li>
+          <li><span class="t">9:35&ndash;10:15</span><span class="s">Park on the SF side and walk out onto the Golden Gate. You don&rsquo;t need to cross it &mdash; far enough for photos is plenty.</span></li>
+          <li><span class="t">10:15&ndash;10:40</span><span class="s">Crissy Field for the third angle: bridge, bay and city together</span></li>
+          <li><span class="t">10:40&ndash;11:10</span><span class="s">Palace of Fine Arts. Walk the lagoon, shoot under the rotunda. 30 minutes is plenty.</span></li>
+          <li><span class="t">11:10&ndash;11:35</span><span class="s">Drive through the Presidio, one short stop if everyone wants it</span></li>
+          <li><span class="t">11:35&ndash;12:15</span><span class="s">Quick lunch near the Marina, or eat what&rsquo;s in the car. No sit-down meal today.</span></li>
+          <li><span class="t">12:15&ndash;2:30</span><span class="s">Southbound to the Monterey Peninsula. Pure transit &mdash; keep snacks handy.</span></li>
+          <li><span class="t">2:30</span><span class="s">Enter 17-Mile Drive. Open sunrise to sunset.<b>$12.50 per car, refundable against a $35+ spend at a Pebble Beach Resorts restaurant</b></span></li>
+          <li><span class="t">2:30&ndash;2:50</span><span class="s">Spanish Bay &mdash; beach, dunes, ocean</span></li>
+          <li><span class="t">2:50&ndash;3:15</span><span class="s">Bird Rock for sea lions, seals and seabirds</span></li>
+          <li><span class="t">3:15&ndash;3:35</span><span class="s">Cypress Point or Point Joe, whichever has parking that day</span></li>
+          <li><span class="t">3:35&ndash;4:00</span><span class="s">The Lone Cypress. The signature photo of the drive.</span></li>
+          <li><span class="t">4:00&ndash;4:25</span><span class="s">Pebble Beach and the Lodge. Brief stop, not a shopping trip.</span></li>
+          <li><span class="t">4:25&ndash;4:45</span><span class="s">Finish the drive toward Carmel</span></li>
+          <li><span class="t">4:45&ndash;5:30</span><span class="s">Carmel-by-the-Sea. Ocean Avenue and the fairytale cottages. You get more Carmel tomorrow morning, so keep it light.</span></li>
+          <li><span class="t">5:30&ndash;6:00</span><span class="s">Check in at Home2 Suites at the Dunes</span></li>
+          <li><span class="t">6:30&ndash;7:30</span><span class="s">Easy dinner near the hotel</span></li>
+          <li><span class="t">7:30&ndash;8:30</span><span class="s">Lay out clothes and snacks for Big Sur. Early night.</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Battery Spencer</li><li>Walk the Golden Gate</li><li>Crissy Field</li><li>Palace of Fine Arts</li><li>Spanish Bay</li><li>Bird Rock</li><li>Lone Cypress</li><li>Carmel</li>
+      </ul>
+      <div class="flag">Running late? Cut in this order: Presidio, then Cypress Point, then shorten Spanish Bay, then shorten Carmel. Do not cut Battery Spencer, the bridge walk, the Lone Cypress or the core drive.</div>
+    </div>
+  </article>
+
+  <!-- OCT 5 -->
+  <article class="day" data-date="2026-10-05">
+    <div class="when"><b>Oct 5</b><i>Monday</i></div>
+    <div>
+      <h3>Big Sur, then inland to Solvang</h3>
+      <p>The longest driving day and the best one. Highway 1 south through Big Sur, over the Santa Lucias, then inland to the Santa Ynez Valley.</p>
+      <div class="meta"><span class="tag drive">220 miles</span><span class="tag">Highway 1</span><span class="tag">Corque check-in 4:00 PM</span></div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">7:00&ndash;8:00</span><span class="s">Wake, pack, free breakfast at Home2. Fill water bottles and grab snacks.</span></li>
+          <li><span class="t">8:15</span><span class="s">Leave the hotel.<b>Fill the gas tank before you go &mdash; Big Sur stations are scarce and expensive</b></span></li>
+          <li><span class="t">8:40&ndash;9:30</span><span class="s">Carmel Beach and a short walk on Ocean Avenue</span></li>
+          <li><span class="t">10:05&ndash;10:35</span><span class="s">Bixby Creek Bridge. Use the designated viewpoints; never stop on the bridge itself.</span></li>
+          <li><span class="t">10:35&ndash;11:45</span><span class="s">The Big Sur coastal drive. A few good pullouts beats every pullout.</span></li>
+          <li><span class="t">11:45&ndash;1:00</span><span class="s">Lunch at Nepenthe, 48510 CA-1. Cliffside tables over the Pacific. Expect a wait; burgers and sandwiches keep it easy.</span></li>
+          <li><span class="t">1:30&ndash;2:15</span><span class="s">McWay Falls &mdash; the waterfall onto the turquoise cove. Stay on the designated overlook.</span></li>
+          <li><span class="t">2:15&ndash;2:45</span><span class="s">Elephant seals at Piedras Blancas. Optional &mdash; first thing to cut if you&rsquo;re behind.</span></li>
+          <li><span class="t">3:00&ndash;5:30</span><span class="s">South on Highway 1, then inland to Solvang</span></li>
+          <li><span class="t">5:30&ndash;6:30</span><span class="s">Check in at the Corque. Shower and reset.</span></li>
+          <li><span class="t">6:45</span><span class="s">Solvang Trolley if there&rsquo;s an evening departure; otherwise it moves to tomorrow morning</span></li>
+          <li><span class="t">7:30</span><span class="s">Casual dinner downtown so you can walk after</span></li>
+          <li><span class="t">8:30&ndash;9:15</span><span class="s">Danish architecture, windmills and bakeries. Get Dexter an &aelig;bleskiver.</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Bixby Creek Bridge</li><li>Big Sur coastal drive</li><li>Nepenthe</li><li>McWay Falls</li><li>Carmel Beach</li><li>Solvang evening</li>
+      </ul>
+      <div class="flag">Check Caltrans for Highway 1 closures a week or two out and again the morning of. Slides close this road for months at a time, and the inland detour would cost you the day. Download offline directions &mdash; cell service south of Carmel is unreliable. Hearst Castle is deliberately not on the plan.</div>
+    </div>
+  </article>
+
+  <!-- OCT 6 -->
+  <article class="day" data-date="2026-10-06">
+    <div class="when"><b>Oct 6</b><i>Tuesday</i></div>
+    <div>
+      <h3>Solvang to Anaheim, and Oogie Boogie Bash</h3>
+      <p>A short Danish morning, on the road by 10:45, and everything after that exists to protect the 3:00 PM park entry. No extra stops between Solvang and Anaheim unless traffic is unusually kind.</p>
+      <div class="meta"><span class="tag drive">175 miles</span><span class="tag park">DCA entry 3:00 PM</span><span class="tag bash">Party 6:00&ndash;11:00 PM</span></div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">7:00&ndash;7:30</span><span class="s">Wake, dress, start packing</span></li>
+          <li><span class="t">7:30&ndash;8:30</span><span class="s">Breakfast at Paula&rsquo;s Pancake House. Get the Danish pancakes.</span></li>
+          <li><span class="t">8:30&ndash;9:30</span><span class="s">Walk downtown &mdash; Solvang Park, Copenhagen Drive, Mission Drive, the windmill</span></li>
+          <li><span class="t">9:30&ndash;9:50</span><span class="s">Pastries or &aelig;bleskiver for the road</span></li>
+          <li><span class="t">9:50&ndash;10:00</span><span class="s">Back to the Corque, load the car</span></li>
+          <li><span class="t">10:00&ndash;10:30</span><span class="s">Solvang Trolley &amp; Carriage Tour, about 25 minutes.<b>Confirm the October schedule &mdash; departures change seasonally</b></span></li>
+          <li><span class="t">10:45</span><span class="s">Leave Solvang. Two and a half to three hours in normal traffic, and Southern California traffic is rarely normal.</span></li>
+          <li><span class="t">12:00&ndash;12:30</span><span class="s">Quick lunch on the route, or sandwiches from Solvang. Nothing sit-down.</span></li>
+          <li><span class="t">12:30&ndash;2:00</span><span class="s">Continue south. This block is the traffic cushion &mdash; check live conditions before you leave.</span></li>
+          <li><span class="t">2:00&ndash;2:30</span><span class="s">Home2 Anaheim. Park, drop bags, change for the park, charge phones.</span></li>
+          <li><span class="t">2:30</span><span class="s">Leave for Disney so you&rsquo;re not arriving exactly at 3:00</span></li>
+          <li><span class="t">3:00</span><span class="s">Enter Disney California Adventure.<b>Three-hour head start before the party &mdash; the most valuable hours of the night</b></span></li>
+          <li><span class="t">3:00&ndash;3:20</span><span class="s">Get oriented, first Halloween photos. Don&rsquo;t commit to a long line yet.</span></li>
+          <li><span class="t">3:20&ndash;4:00</span><span class="s">Cars Land under the Halloween overlay. Radiator Springs Racers if the wait is sane.</span></li>
+          <li><span class="t">4:00&ndash;4:45</span><span class="s">One or two attractions on live wait times &mdash; Soarin&rsquo;, Toy Story Midway Mania, Little Mermaid, Monsters Inc.</span></li>
+          <li><span class="t">4:45&ndash;5:15</span><span class="s">Halloween photos and a snack. Slow down before the party.</span></li>
+          <li><span class="t">5:15&ndash;5:50</span><span class="s">Early dinner. Eat now so you&rsquo;re not sitting down at 6:15.</span></li>
+          <li><span class="t">6:00</span><span class="s">Oogie Boogie Bash begins. Stop chasing rides.</span></li>
+          <li><span class="t">6:00&ndash;7:00</span><span class="s">Treat trails. You have all night, so don&rsquo;t rush every one.</span></li>
+          <li><span class="t">7:00&ndash;7:45</span><span class="s">Villain and character experiences. If Dexter wants a specific one, take it over any ride.</span></li>
+          <li><span class="t">7:45&ndash;8:30</span><span class="s">Villains Grove at Redwood Creek. The most distinctive thing in the park that night &mdash; protect this window.</span></li>
+          <li><span class="t">8:30&ndash;9:00</span><span class="s">Ride break if the app shows a short wait</span></li>
+          <li><span class="t">9:00&ndash;9:45</span><span class="s">Remaining treat trails and Halloween entertainment</span></li>
+          <li><span class="t">9:45&ndash;10:30</span><span class="s">Anything missed &mdash; a character, a trail, a photo</span></li>
+          <li><span class="t">10:30&ndash;11:00</span><span class="s">Last photos and treats, then out. No need to stay to 11 if everyone&rsquo;s done.</span></li>
+          <li><span class="t">~11:15 PM</span><span class="s">Back to Home2 and straight to bed</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Paula&rsquo;s Pancake House</li><li>Solvang windmill</li><li>Trolley</li><li>3 PM entry</li><li>Cars Land</li><li>Villains Grove</li><li>Treat trails</li>
+      </ul>
+      <div class="flag">Charge every phone and battery pack before you leave Anaheim. Between the app, wait times and a night of photos, this is the day something dies at 8 PM.</div>
+    </div>
+  </article>
+
+  <!-- OCT 7 -->
+  <article class="day" data-date="2026-10-07">
+    <div class="when"><b>Oct 7</b><i>Wednesday</i></div>
+    <div>
+      <h3>Universal, the Hollywood Sign and the Walk of Fame</h3>
+      <p>Universal is the day; Hollywood is the bonus on the way to the coast. General Admission means an early arrival matters more than anything else you do.</p>
+      <div class="meta"><span class="tag drive">59 miles</span><span class="tag park">Universal, general admission</span><span class="tag">Hollywood Sign</span></div>
+      <div class="flag">You start this day in Anaheim, not Santa Monica. Check out of Home2 by 11:00 &mdash; do it before you leave at 6:45 &mdash; and the bags ride with you all day, because the Santa Monica room won&rsquo;t be ready until afternoon. Universal&rsquo;s lockers are small.</div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">6:00&ndash;6:30</span><span class="s">Wake, quick breakfast, comfortable shoes, light layer</span></li>
+          <li><span class="t">6:30&ndash;6:45</span><span class="s">Check out of Home2 Anaheim and load everything into the car</span></li>
+          <li><span class="t">6:45&ndash;7:45</span><span class="s">Anaheim to Universal City. Roughly 45 minutes clear, well over an hour in morning traffic on the 5 and 134.</span></li>
+          <li><span class="t">7:45&ndash;8:30</span><span class="s">Park, walk CityWalk, get to the gate. Globe photo, then move.<b>Parking is not included with general admission</b></span></li>
+          <li><span class="t">8:30&ndash;11:30</span><span class="s">Priority rides while the lines are short, in this order: Super Nintendo World and Mario Kart, Jurassic World, Revenge of the Mummy, Transformers, then Harry Potter and Forbidden Journey</span></li>
+          <li><span class="t">11:30&ndash;12:15</span><span class="s">Super Nintendo World for photos and anything you missed. Check the app that morning if Toadstool Cafe matters.</span></li>
+          <li><span class="t">12:15&ndash;1:00</span><span class="s">Lunch inside the park. Quick service, don&rsquo;t leave the gates.</span></li>
+          <li><span class="t">1:00&ndash;2:15</span><span class="s">The World-Famous Studio Tour. The thing Universal Hollywood has that no other park does &mdash; a working backlot.</span></li>
+          <li><span class="t">2:15&ndash;2:45</span><span class="s">WaterWorld. Check showtimes in the app; a good excuse to sit down.</span></li>
+          <li><span class="t">2:45&ndash;4:30</span><span class="s">Everything left &mdash; Simpsons, Minions, Secret Life of Pets, repeats, character photos, shopping</span></li>
+          <li><span class="t">4:30&ndash;5:00</span><span class="s">CityWalk to decompress before the drive</span></li>
+          <li><span class="t">5:00&ndash;5:40</span><span class="s">Drive to Lake Hollywood Park</span></li>
+          <li><span class="t">5:40&ndash;6:15</span><span class="s">Hollywood Sign from Lake Hollywood Park &mdash; close view, no hike, a lawn and a playground. Street parking only, so allow slack.</span></li>
+          <li><span class="t">6:15&ndash;6:35</span><span class="s">Down to Hollywood Boulevard. Park once and leave the car there.</span></li>
+          <li><span class="t">6:35&ndash;7:30</span><span class="s">Walk of Fame, TCL Chinese Theatre, Dolby Theatre. Pick a compact stretch &mdash; the full corridor is far longer than you want.</span></li>
+          <li><span class="t">7:30&ndash;8:15</span><span class="s">Easy dinner near the Boulevard. No reservation tonight.</span></li>
+          <li><span class="t">8:15&ndash;9:15</span><span class="s">Drive to Santa Monica. Treat the arrival as a range, not a time.</span></li>
+          <li><span class="t">~9:15 PM</span><span class="s">Hotel and bed. You fly home tomorrow.</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Super Nintendo World</li><li>Studio Tour</li><li>Jurassic World</li><li>Harry Potter</li><li>Hollywood Sign</li><li>Walk of Fame</li>
+      </ul>
+      <div class="flag">If Universal runs long, don&rsquo;t bail early to protect the evening. Keep the Hollywood Sign as the priority and cut the Walk of Fame to a 20-minute check-off, or skip Hollywood dinner and eat in Santa Monica.</div>
+    </div>
+  </article>
+
+  <!-- OCT 8 -->
+  <article class="day" data-date="2026-10-08">
+    <div class="when"><b>Oct 8</b><i>Thursday</i></div>
+    <div>
+      <h3>Santa Monica, then home</h3>
+      <p>One last look at the Pacific, a good breakfast, and a comfortable buffer at LAX. Nothing new gets added today.</p>
+      <div class="meta"><span class="tag">Santa Monica Pier</span><span class="tag drive">10 miles to LAX</span><span class="tag fly">LAX 1:08 PM</span></div>
+      <details>
+        <summary>Hour by hour</summary>
+        <ol class="slots">
+          <li><span class="t">7:00</span><span class="s">Pack completely and load the car. Sweep the room for chargers, IDs and anything bought on the trip.</span></li>
+          <li><span class="t">7:30&ndash;8:15</span><span class="s">Breakfast at Sweet Maple near Ocean Avenue, which opens at 8:00. Rae&rsquo;s opens at 6:30 if you want earlier and cheaper.</span></li>
+          <li><span class="t">8:15&ndash;9:15</span><span class="s">Santa Monica Pier. Photo at the Yacht Harbor sign, walk to the end, the Ferris wheel, and the Route 66 End of the Trail sign right there on the Pier.</span></li>
+          <li><span class="t">9:15&ndash;9:35</span><span class="s">Down onto the beach for one last look at the ocean</span></li>
+          <li><span class="t">9:35&ndash;9:50</span><span class="s">Back to the hotel, final room and car check</span></li>
+          <li><span class="t">9:50&ndash;10:05</span><span class="s">Check out. Have the rental return address loaded before you pull away.</span></li>
+          <li><span class="t">10:05&ndash;10:50</span><span class="s">Drive to SIXT at 5251 W 98th St. Not the terminal garage &mdash; load that address, not &ldquo;LAX rental return.&rdquo;<b>Return is booked for 11:00 AM. Leave on the clock, not on the GPS estimate.</b></span></li>
+          <li><span class="t">10:50&ndash;11:25</span><span class="s">Hand over the car, then the shuttle to the terminal. This leg is the one people forget to budget for.</span></li>
+          <li><span class="t">11:25&ndash;11:50</span><span class="s">Bag drop and security</span></li>
+          <li><span class="t">11:50&ndash;12:45</span><span class="s">Buffer. Lunch, restrooms, settle at the gate.</span></li>
+          <li><span class="t">1:08 PM</span><span class="s">UA 1084 to Houston, then home to Jackson at 9:58 PM</span></li>
+        </ol>
+      </details>
+      <ul class="musts">
+        <li>Sweet Maple</li><li>Santa Monica Pier</li><li>Yacht Harbor sign</li><li>Route 66 End of the Trail</li><li>Beach walk</li>
+      </ul>
+      <div class="flag">Nothing else goes on this morning. No Venice, no Malibu, no Beverly Hills &mdash; each one adds traffic risk on a day with a hard deadline. If you wake up late, skip the sit-down breakfast and go straight to the Pier.</div>
+    </div>
+  </article>
+
+  <h2>Distance</h2>
+  <table>
+    <thead><tr><th>Day</th><th>Driving</th><th>Miles</th></tr></thead>
+    <tbody>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">SFO to Hotel Caza</td><td>14</td></tr>
+      <tr><td class="day-col">Oct 3</td><td class="leglabel">San Francisco on foot and by rideshare</td><td>0</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">Battery Spencer, bridge, Crissy, Palace, Presidio</td><td>22</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">San Francisco to Pebble Beach gate</td><td>115</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">17-Mile Drive, Carmel, on to Marina</td><td>28</td></tr>
+      <tr><td class="day-col">Oct 5</td><td class="leglabel">Marina to Solvang via Big Sur</td><td>220</td></tr>
+      <tr><td class="day-col">Oct 6</td><td class="leglabel">Solvang to Anaheim</td><td>175</td></tr>
+      <tr><td class="day-col">Oct 6</td><td class="leglabel">Hotel to Disney and back</td><td>4</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Anaheim to Universal City</td><td>33</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Universal to Lake Hollywood to the Boulevard</td><td>10</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Hollywood to Santa Monica</td><td>16</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Santa Monica to LAX</td><td>10</td></tr>
+      <tr class="total"><td></td><td>Behind the wheel</td><td>647</td></tr>
+    </tbody>
+  </table>
+  <p class="mileage-note">Straight up I-5, San Francisco to Los Angeles is about 380 miles. The coast route costs you roughly 265 extra, nearly all of it on the Oct 5 Big Sur leg.</p>
+
+  <table>
+    <thead><tr><th>Day</th><th>Flying</th><th>Miles</th></tr></thead>
+    <tbody>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">Jackson to Houston</td><td>350</td></tr>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">Houston to San Francisco</td><td>1,633</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Los Angeles to Houston</td><td>1,377</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Houston to Jackson</td><td>350</td></tr>
+      <tr class="total"><td></td><td>In the air</td><td>3,710</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Worth knowing</h2>
+  <ul class="notes">
+    <li>Deliberately not on the plan: Alcatraz, Hearst Castle, Beverly Hills, Griffith Observatory, Venice and Malibu. Each one was cut so a day stays enjoyable instead of rushed.</li>
+    <li>The car is a SIXT midsize SUV &mdash; a RAV4 or similar, five seats and four bags. SFO pickup 10:30 PM Oct 2, LAX return 11:00 AM Oct 8. One-way drop, so confirm the drop fee is already in the rate.</li>
+    <li>Two park days back to back, both heavy walking, with a late night in between. Oct 7 is the day fatigue shows up.</li>
+    <li>Pebble Beach charges $12.50 per car for 17-Mile Drive, refundable against a $35 spend at a Pebble Beach Resorts restaurant.</li>
+    <li>Universal parking is separate from general admission. Download the Universal app the night before for wait times and showtimes.</li>
+    <li>Recheck before you go: Highway 1 conditions through Big Sur, the Solvang Trolley&rsquo;s October schedule, Universal&rsquo;s park hours, and Disney&rsquo;s final Bash entertainment lineup.</li>
+    <li>Time zone: Pacific is two hours behind Jackson the whole trip. Early mornings will feel worse than they look, and the Oct 8 alarm is 5:00 AM back home.</li>
+  </ul>
+
+  <h2>The basics</h2>
+  <div class="facts">
+    <div class="fact"><b>Who</b><p>Corley, Jessica and Dexter</p></div>
+    <div class="fact"><b>Airline</b><p>United, all four legs through Houston</p></div>
+    <div class="fact"><b>Nights</b><p>Six &mdash; two San Francisco, then one each down the coast</p></div>
+    <div class="fact"><b>Driving</b><p>647 miles across five days</p></div>
+    <div class="fact"><b>Flying</b><p>3,710 miles round trip</p></div>
+    <div class="fact"><b>Park days</b><p>Disney California Adventure and Universal Hollywood</p></div>
+    <div class="fact"><b>Car</b><p>SIXT midsize SUV, SFO to LAX</p></div>
+  </div>
+
+  <div class="empty">
+    <b>Still open</b>
+    The Santa Monica room for Oct 7 and the Solvang Trolley departure time.
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function(){
+  var depart = Date.UTC(2026,9,2,22,20);
+  var home   = Date.UTC(2026,9,9,2,58);
+  var d=document.getElementById('d'), h=document.getElementById('h'),
+      m=document.getElementById('m'), s=document.getElementById('s'),
+      dl=document.getElementById('dl'), note=document.getElementById('heroNote'),
+      lede=document.getElementById('lede');
+
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+
+  function tick(){
+    var now = Date.now(), target, mode;
+    if(now < depart){ target = depart; mode='before'; }
+    else if(now < home){ target = home; mode='during'; }
+    else { mode='after'; }
+
+    if(mode==='after'){
+      d.textContent='0'; h.textContent='00'; m.textContent='00'; s.textContent='00';
+      lede.textContent='That was seven days down the coast.';
+      note.textContent='Home in Jackson.';
+      return;
+    }
+
+    var diff = Math.max(0, target - now);
+    d.textContent = Math.floor(diff/86400000);
+    h.textContent = pad(Math.floor(diff%86400000/3600000));
+    m.textContent = pad(Math.floor(diff%3600000/60000));
+    s.textContent = pad(Math.floor(diff%60000/1000));
+    dl.textContent = Math.floor(diff/86400000)===1 ? 'day' : 'days';
+
+    if(mode==='during'){
+      var dayNum = Math.floor((now - depart)/86400000) + 1;
+      lede.textContent = 'Day ' + dayNum + ' of seven.';
+      note.textContent = 'Until the wheels touch down back in Jackson.';
+    }
+  }
+
+  function markToday(){
+    var n=new Date();
+    var key = n.getFullYear()+'-'+pad(n.getMonth()+1)+'-'+pad(n.getDate());
+    var el = document.querySelector('.day[data-date="'+key+'"]');
+    if(el){ el.classList.add('today'); var dt=el.querySelector('details'); if(dt) dt.open=true; }
+  }
+
+  document.getElementById('foot').textContent =
+    'Flight times are local to each airport. Driving miles are road distances, rounded. Confirmation numbers are not listed here \u2014 the page is public.';
+
+  tick(); markToday();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
