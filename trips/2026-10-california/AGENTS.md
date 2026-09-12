@@ -101,6 +101,13 @@ Live countdown → coast route SVG → flights → lodging → rental car → da
 - Hour-by-hour schedules use native `<details>`/`<summary>` — no JS needed to expand.
 - **No `localStorage`, `sessionStorage`, or any browser storage.** The page is stateless by design.
 - Mobile breakpoint at 760px scales type **up** — these get read on phones.
+- **Hero sizing is deliberate.** The countdown column is `max-content` and the route map
+  is capped at 184px so the two sit as one cluster; the map's viewBox (`16 10 264 490`)
+  is cropped to the drawing's real bounds, and the stop labels are 15px in viewBox units
+  so they still render ~11px at that size. Widening the map or restoring a fractional
+  grid re-opens the ~250px of dead air this replaced. On mobile the countdown comes
+  first and the map follows — don't put `order:-1` back on `.coast`, it pushed the clock
+  below the fold on a 390&times;844 phone.
 
 ### Countdown logic
 
@@ -149,16 +156,6 @@ in a private browser window.
 - Oct 7 Santa Monica room — not booked. The screenshot was a search set to **1 guest**; it needs 3.
 - Solvang Trolley — October departure times change seasonally and need confirming.
 - One-way drop fee on the SIXT rental — confirm it's already in the rate.
-
-**Dashboard wants** (not yet done)
-- Tighten the empty space around the countdown and the route map. The hero reads mostly
-  as dead air right now. Two causes: `.hero` is a two-column grid with
-  `align-items:center`, and the left column (lede, clock, note) is far shorter than the
-  300&times;540 route SVG, so it floats with gaps above and below; and the SVG's own
-  viewBox carries slack around a drawing that only spans roughly x 24&ndash;272,
-  y 18&ndash;492. Likely fixes: `align-items:start` or `stretch` on `.hero`, a smaller
-  `.coast` max-width, a tighter viewBox, and trimming the `padding:44px 0 12px`. Keep the
-  760px mobile breakpoint scaling type up, not down.
 
 **Conflicts between the itinerary PDF and the user's later messages** (page follows the user, not the PDF)
 - PDF puts San Francisco at the **Infinity Hotel, Marina District**; the user later said **Hotel Caza, Fisherman's Wharf**. Page uses Caza. Knock-on: the Pier 39 / Ghirardelli / Aquatic Park block is now walkable from the room, and Oct 3 dinner shifts from Chestnut Street to the Wharf or North Beach.
