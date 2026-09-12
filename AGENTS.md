@@ -22,6 +22,10 @@ unless git is unavailable; that was the old workflow and it was expensive.
 
 Test by opening the file locally in a browser. There's nothing to build.
 
+Layout changes get measured, not eyeballed. `getBoundingClientRect()` on the hero's two
+columns will tell you how much dead air is actually in there, and whether the countdown
+still clears the fold at 390px — the fix for one width often breaks the other.
+
 ## Source of truth
 
 Trip facts come from the user's own booking confirmations and screenshots, not from
