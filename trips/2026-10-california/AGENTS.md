@@ -116,7 +116,7 @@ below it.
 - Hour-by-hour schedules use native `<details>`/`<summary>` — no JS needed to expand.
 - **No `localStorage`, `sessionStorage`, or any browser storage.** The page is stateless by design.
 - Mobile breakpoint at 760px scales type **up** — these get read on phones, which is where
-  this dashboard is opened nearly all the time. Body runs 20.5px there against 17px on
+  this dashboard is opened nearly all the time. Body runs 22px there against 17px on
   desktop, and every small-print class is scaled with it rather than left at its desktop
   size. Checked for overflow at 320 through 760px with every collapsible open.
 - **Hero sizing is deliberate.** The countdown column is `minmax(0,max-content)` and the
