@@ -67,6 +67,14 @@ An earlier version of this booking had the pickup at 10:30 **AM** on Oct 2, twel
 hours before the flight lands. The user corrected it to 10:30 PM. If a future
 screenshot shows a morning pickup again, that's a regression, not new information.
 
+### Ride heights
+
+Dexter is about 4'7" (55 inches), which clears **every** height minimum at both parks. The
+tallest anywhere on the itinerary are 48 inches — Incredicoaster at Disney California
+Adventure, Revenge of the Mummy and Forbidden Journey at Universal. Both ride plans state
+this rather than gating rides by height; if he is measured shorter at the gate, the plans
+still work but the 48-inch rides drop out.
+
 ### Fixed times that drive everything else
 
 - **Oct 6, 3:00 PM** — Disney California Adventure entry (three-hour head start before the party)
@@ -91,7 +99,7 @@ Alcatraz, Hearst Castle, Beverly Hills, Griffith Observatory, Venice, Malibu. Th
 
 ### What's on the page
 
-Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note; Oct 6 also carries a collapsible ride plan) → driving and flight mileage tables → logistics notes → summary facts → open items.
+Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note; Oct 6 and Oct 7 also carry collapsible ride plans) → driving and flight mileage tables → logistics notes → summary facts → open items.
 
 That is the source order, and it is what phones and windows under 1080px show. At
 1080px and up the lodging block is grid-placed into the space beside the hero, so the
@@ -178,6 +186,13 @@ in a private browser window.
 
 **Recheck close to the trip**
 Highway 1 conditions through Big Sur (Caltrans), Universal park hours, Disney's final Bash entertainment lineup, the Solvang Trolley schedule.
+
+The **Oct 7 ride plan** assumes the 8:30 rope drop the timeline protects. Confirm Universal's
+2026 park hours, whether Oct 7 is a Halloween Horror Nights night (the day park closes early
+on event nights, often 5:00 PM, and Lower Lot attractions can shut mid-afternoon for setup),
+whether Super Nintendo World is on a virtual line, and which rides run single rider. The
+structure — Upper Lot headliners at rope drop, one trip down the StarWay, the Studio Tour
+before the midday peak — survives any of those answers.
 
 The **Oct 6 ride plan** is written from how the Bash has run in recent seasons, not from a
 published 2026 lineup. Everything in it with a time or a number attached needs confirming:
