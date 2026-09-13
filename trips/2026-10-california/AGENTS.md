@@ -203,6 +203,33 @@ in a private browser window.
 | Time zone note | Was backwards — mornings in California are *easier* on a Central body clock, not harder. The cost is the nights. | Rewritten |
 | "Holiday-weekend Friday" on Oct 2 | No holiday that weekend; Columbus Day is Oct 12. | Removed |
 
+### Numbers, maps and deadlines (added Sept 13)
+
+Every phone number on the page was looked up, not recalled, and each is a public main line —
+no confirmation numbers, consistent with §0. Hotel Caza's is a 650 number rather than 415;
+that is what the hotel publishes, verified twice, so don't "fix" it.
+
+| | Number |
+|---|---|
+| Hotel Caza | 650-502-4200 |
+| Home2 Dunes, Marina | 831-275-4500 |
+| Corque, Solvang | 805-688-8000 |
+| Home2 Anaheim | 714-215-4855 |
+| Hilton Santa Monica | 310-395-3332 |
+| SIXT (national, both branches) | 888-749-8227 |
+| United | 800-864-8331 |
+| Caltrans road conditions | 800-427-7623 |
+| Nepenthe | 831-667-2345 |
+
+Map links use `google.com/maps/search/?api=1&query=` with an encoded address, which hands off
+to the Maps app on a phone. The Oct 5 Plan B uses the `dir/?api=1` form with Salinas and Paso
+Robles as waypoints. `tel:` hrefs are all `+1` E.164 — a plain `tel:650-502-4200` is not
+reliably dialable.
+
+Each day with a hard deadline carries a `.deadline` band above its schedule, stating the time
+and what breaks if it slips. Oct 3 has none on purpose: it is the one day with no deadline,
+and inventing one would dilute the other six.
+
 **Still to recheck before departure**
 Highway 1 south of Big Sur (Caltrans QuickMap the night before and the morning of), Universal's posted hours for Oct 7, and that all three Bash tickets are in the Disneyland app. Everything else above was verified against sources dated September 2026.
 

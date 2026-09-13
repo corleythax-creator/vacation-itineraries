@@ -88,6 +88,15 @@
   .slots .s b{font-weight:400;color:var(--poppy);font-family:var(--display);font-size:12.5px;display:block;letter-spacing:.01em}
   .day details h4{font-family:var(--display);font-size:13px;font-weight:600;color:var(--sand);letter-spacing:.02em;margin:24px 0 0}
   .day details h4:first-of-type{margin-top:20px}
+  .lines{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:9px;font-family:var(--display);font-weight:500;font-size:13.5px;letter-spacing:0}
+  .lines a{display:inline-block;color:var(--kelp);text-decoration:none;padding:3px 0;border-bottom:1px solid rgba(46,140,124,.5)}
+  .lines a:hover{color:var(--fog);border-bottom-color:var(--fog)}
+
+  .deadline{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:15px;
+    border:1px solid rgba(242,160,61,.45);background:rgba(242,160,61,.09);border-radius:8px;padding:11px 15px}
+  .deadline b{font-family:var(--display);font-size:16px;font-weight:800;color:var(--poppy);letter-spacing:-.01em}
+  .deadline span{font-size:15px;color:var(--sand)}
+
   .musts{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px}
   .musts li{font-family:var(--display);font-size:12.5px;font-weight:500;color:var(--poppy);border:1px solid rgba(242,160,61,.32);border-radius:6px;padding:4px 10px;background:rgba(242,160,61,.07)}
 
@@ -183,6 +192,9 @@
     .slots .s b{font-size:15px}
     .day details h4{font-size:14.5px}
     .musts li{font-size:15px}
+    .lines{font-size:15.5px;gap:10px 18px}
+    .deadline b{font-size:18.5px}
+    .deadline span{font-size:17.5px}
     .fact b{font-size:14.5px}
     .fact p{font-size:21px}
     .notes li{font-size:20px}
@@ -279,27 +291,27 @@
     <h2>Where you sleep</h2>
     <div class="stay">
       <div class="nights">Oct 2&ndash;4 &middot; 2 nights</div>
-      <div class="place">Hotel Caza Fisherman&rsquo;s Wharf<small>1300 Columbus Ave, San Francisco</small></div>
+      <div class="place">Hotel Caza Fisherman&rsquo;s Wharf<small>1300 Columbus Ave, San Francisco</small><span class="lines"><a href="tel:+16505024200">650-502-4200</a><a href="https://www.google.com/maps/search/?api=1&amp;query=1300+Columbus+Ave,+San+Francisco,+CA+94133">Map</a></span></div>
       <div class="status">Booked</div>
     </div>
     <div class="stay">
       <div class="nights">Oct 4&ndash;5 &middot; 1 night</div>
-      <div class="place">Home2 Suites at the Dunes<small>Monterey Bay &middot; 3 guests</small></div>
+      <div class="place">Home2 Suites at the Dunes<small>Monterey Bay &middot; 3 guests</small><span class="lines"><a href="tel:+18312754500">831-275-4500</a><a href="https://www.google.com/maps/search/?api=1&amp;query=225+10th+St,+Marina,+CA+93933">Map</a></span></div>
       <div class="status">Booked</div>
     </div>
     <div class="stay">
       <div class="nights">Oct 5&ndash;6 &middot; 1 night</div>
-      <div class="place">Corque Hotel, Solvang<small>Tribute Portfolio &middot; check-in 4:00 PM, out 11:00 AM</small></div>
+      <div class="place">Corque Hotel, Solvang<small>Tribute Portfolio &middot; check-in 4:00 PM, out 11:00 AM</small><span class="lines"><a href="tel:+18056888000">805-688-8000</a><a href="https://www.google.com/maps/search/?api=1&amp;query=400+Alisal+Rd,+Solvang,+CA+93464">Map</a></span></div>
       <div class="status">Booked</div>
     </div>
     <div class="stay">
       <div class="nights">Oct 6&ndash;7 &middot; 1 night</div>
-      <div class="place">Home2 Suites Anaheim Resort<small>Bash night &middot; out 11:00 AM Oct 7</small></div>
+      <div class="place">Home2 Suites Anaheim Resort<small>Bash night &middot; out 11:00 AM Oct 7</small><span class="lines"><a href="tel:+17142154855">714-215-4855</a><a href="https://www.google.com/maps/search/?api=1&amp;query=1441+S+Manchester+Ave,+Anaheim,+CA+92802">Map</a></span></div>
       <div class="status">Booked</div>
     </div>
     <div class="stay">
       <div class="nights">Oct 7&ndash;8 &middot; 1 night</div>
-      <div class="place">Hilton Santa Monica Hotel &amp; Suites<small>1707 4th St &middot; three blocks from the Pier</small></div>
+      <div class="place">Hilton Santa Monica Hotel &amp; Suites<small>1707 4th St &middot; three blocks from the Pier</small><span class="lines"><a href="tel:+13103953332">310-395-3332</a><a href="https://www.google.com/maps/search/?api=1&amp;query=1707+4th+St,+Santa+Monica,+CA+90401">Map</a></span></div>
       <div class="status open">Not booked yet</div>
     </div>
   </section>
@@ -307,12 +319,12 @@
   <h2>The car</h2>
   <div class="stay">
     <div class="nights">Oct 2 &middot; pickup</div>
-    <div class="place">SIXT &mdash; SFO Rental Car Center<small>780 N McDonnell Rd &middot; AirTrain Blue Line from the terminal</small></div>
+    <div class="place">SIXT &mdash; SFO Rental Car Center<small>780 N McDonnell Rd &middot; AirTrain Blue Line from the terminal</small><span class="lines"><a href="tel:+18887498227">SIXT 888-749-8227</a><a href="https://www.google.com/maps/search/?api=1&amp;query=780+N+McDonnell+Rd,+San+Francisco,+CA+94128">Map</a></span></div>
     <div class="status">10:30 PM</div>
   </div>
   <div class="stay">
     <div class="nights">Oct 8 &middot; return</div>
-    <div class="place">SIXT &mdash; LAX<small>5251 W 98th St &middot; off-airport, shuttle to the terminal</small></div>
+    <div class="place">SIXT &mdash; LAX<small>5251 W 98th St &middot; off-airport, shuttle to the terminal</small><span class="lines"><a href="tel:+18887498227">SIXT 888-749-8227</a><a href="https://www.google.com/maps/search/?api=1&amp;query=5251+W+98th+St,+Los+Angeles,+CA+90045">Map &mdash; not the terminal garage</a></span></div>
     <div class="status">11:00 AM</div>
   </div>
   <div class="stay">
@@ -332,6 +344,7 @@
       <h3>Fly out to San Francisco</h3>
       <p>Jackson to Houston to SFO, landing at 9:50 PM Pacific. That is 11:50 PM body-clock time for Dexter, so the night is baggage claim, the rental counter and the drive to the Wharf.</p>
       <div class="meta"><span class="tag fly">JAN 5:20 PM</span><span class="tag fly">SFO 9:50 PM</span><span class="tag drive">14 miles to the hotel</span></div>
+      <div class="deadline"><b>At JAN by 3:30 PM</b><span>Bags and security before a 5:20 departure. The Houston connection is 46 minutes, so a late start at Jackson is the one delay you cannot absorb.</span></div>
       <div class="flag">The Houston connection is 46 minutes and UA 4348 arrives on a regional jet. Check the gate for UA 1202 before you land and walk straight there.</div>
       <details>
         <summary>Hour by hour</summary>
@@ -391,13 +404,14 @@
       <h3>Golden Gate, then 17-Mile Drive to Monterey</h3>
       <p>Three different views of the bridge before lunch, then south to Pebble Beach. This is the fullest day on the board and it only works if you are out the door by 8:10.</p>
       <div class="meta"><span class="tag drive">165 miles</span><span class="tag">Battery Spencer</span><span class="tag park">17-Mile Drive, $12.50 per car</span></div>
+      <div class="deadline"><b>Out the door by 8:10 AM</b><span>Battery Spencer&rsquo;s lot is tiny and fills, and 17-Mile Drive closes at sunset. Everything after depends on this one.</span></div>
       <details>
         <summary>Hour by hour</summary>
         <ol class="slots">
           <li><span class="t">7:00&ndash;7:45</span><span class="s">Wake, pack the car completely before any sightseeing. Jackets, water, snacks and cameras stay reachable.</span></li>
           <li><span class="t">7:45&ndash;8:10</span><span class="s">Quick breakfast. Check out.</span></li>
           <li><span class="t">8:10&ndash;8:35</span><span class="s">North across the bridge to Conzelman Road and Battery Spencer</span></li>
-          <li><span class="t">8:35&ndash;9:10</span><span class="s">Battery Spencer &mdash; the classic elevated shot of the bridge with the city behind it.<b>Parking is tiny; going first thing is the whole strategy</b></span></li>
+          <li><span class="t">8:35&ndash;9:10</span><span class="s">Battery Spencer &mdash; the classic elevated shot of the bridge with the city behind it.<b>Parking is tiny; going first thing is the whole strategy</b><span class="lines"><a href="https://www.google.com/maps/search/?api=1&amp;query=Battery+Spencer,+Sausalito,+CA+94965">Map</a></span></span></li>
           <li><span class="t">9:10&ndash;9:35</span><span class="s">Back across the bridge, which is its own experience</span></li>
           <li><span class="t">9:35&ndash;10:15</span><span class="s">Park on the SF side and walk out onto the Golden Gate. You don&rsquo;t need to cross it &mdash; far enough for photos is plenty.</span></li>
           <li><span class="t">10:15&ndash;10:40</span><span class="s">Crissy Field for the third angle: bridge, bay and city together</span></li>
@@ -432,6 +446,7 @@
       <h3>Big Sur, then inland to Solvang</h3>
       <p>The longest driving day and the best one. Highway 1 south through Big Sur, over the Santa Lucias, then inland to the Santa Ynez Valley.</p>
       <div class="meta"><span class="tag drive">220 miles</span><span class="tag">Highway 1</span><span class="tag">Corque check-in 4:00 PM</span></div>
+      <div class="deadline"><b>Leave Marina by 8:15 AM</b><span>Gas up first. If Highway 1 is still closed and you are taking the inland route, make it 8:00 and skip Carmel Beach.</span></div>
       <details>
         <summary>Hour by hour</summary>
         <ol class="slots">
@@ -440,7 +455,7 @@
           <li><span class="t">8:40&ndash;9:30</span><span class="s">Carmel Beach and a short walk on Ocean Avenue</span></li>
           <li><span class="t">10:05&ndash;10:35</span><span class="s">Bixby Creek Bridge. Use the designated viewpoints; never stop on the bridge itself.</span></li>
           <li><span class="t">10:35&ndash;11:45</span><span class="s">The Big Sur coastal drive. A few good pullouts beats every pullout.</span></li>
-          <li><span class="t">11:45&ndash;1:00</span><span class="s">Lunch at Nepenthe, 48510 CA-1. Cliffside tables over the Pacific. Expect a wait; burgers and sandwiches keep it easy.</span></li>
+          <li><span class="t">11:45&ndash;1:00</span><span class="s">Lunch at Nepenthe, 48510 CA-1. Cliffside tables over the Pacific. No reservations, first come first served &mdash; expect a wait; burgers and sandwiches keep it easy.<span class="lines"><a href="tel:+18316672345">831-667-2345</a><a href="https://www.google.com/maps/search/?api=1&amp;query=48510+CA-1,+Big+Sur,+CA+93920">Map</a></span></span></li>
           <li><span class="t">1:30&ndash;2:00</span><span class="s">McWay Falls &mdash; the waterfall onto the turquoise cove, seen from the roadside viewing area.<b>The Overlook Trail is closed for a retaining-wall project through 2026 &mdash; the pullout view is the view</b></span></li>
           <li><span class="t">2:00&ndash;3:00</span><span class="s">South to Piedras Blancas. An hour of coast with no stops worth an argument.<b>Only if Highway 1 is open through &mdash; see the flag below</b></span></li>
           <li><span class="t">3:00&ndash;3:30</span><span class="s">Elephant seals at Piedras Blancas. Optional &mdash; first thing to cut if you&rsquo;re behind.</span></li>
@@ -454,7 +469,7 @@
       <ul class="musts">
         <li>Bixby Creek Bridge</li><li>Big Sur coastal drive</li><li>Nepenthe</li><li>McWay Falls</li><li>Carmel Beach</li><li>Solvang evening</li>
       </ul>
-      <div class="flag">As of Sept 13, Highway 1 is <b>closed to through traffic</b> south of Big Sur &mdash; from Kirk Creek Campground to Willow Springs &mdash; for the Plaskett Fire, with no reopening date. Carmel, Bixby, Nepenthe and the McWay pullout are all reachable from the north; Piedras Blancas is not. If it is still closed on the morning of: drive the coast as far as McWay, turn around, and go Carmel &rarr; Salinas &rarr; 101 south to Solvang. That is roughly 300 miles instead of 220 and about seven hours behind the wheel, so leave the hotel by 8:00 and skip Carmel Beach. Pfeiffer Big Sur and Andrew Molera state parks are closed regardless. Check Caltrans QuickMap the night before and again at breakfast. Download offline directions &mdash; cell service south of Carmel is unreliable. Hearst Castle is deliberately not on the plan.</div>
+      <div class="flag">As of Sept 13, Highway 1 is <b>closed to through traffic</b> south of Big Sur &mdash; from Kirk Creek Campground to Willow Springs &mdash; for the Plaskett Fire, with no reopening date. Carmel, Bixby, Nepenthe and the McWay pullout are all reachable from the north; Piedras Blancas is not. If it is still closed on the morning of: drive the coast as far as McWay, turn around, and go Carmel &rarr; Salinas &rarr; 101 south to Solvang. That is roughly 300 miles instead of 220 and about seven hours behind the wheel, so leave the hotel by 8:00 and skip Carmel Beach.<span class="lines"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Marina,+CA&amp;destination=Solvang,+CA&amp;waypoints=Salinas,+CA%%7CPaso+Robles,+CA">Inland route, one tap</a><a href="https://quickmap.dot.ca.gov/">Caltrans QuickMap</a></span> Pfeiffer Big Sur and Andrew Molera state parks are closed regardless. Check Caltrans QuickMap the night before and again at breakfast. Download offline directions &mdash; cell service south of Carmel is unreliable. Hearst Castle is deliberately not on the plan.</div>
     </div>
   </article>
 
@@ -465,6 +480,7 @@
       <h3>Solvang to Anaheim, and Oogie Boogie Bash</h3>
       <p>A short Danish morning, on the road by 10:45, and everything after that exists to protect the 3:00 PM park entry. No extra stops between Solvang and Anaheim unless traffic is unusually kind.</p>
       <div class="meta"><span class="tag drive">175 miles</span><span class="tag park">DCA entry 3:00 PM</span><span class="tag bash">Party 6:00&ndash;11:00 PM</span></div>
+      <div class="deadline"><b>Leave Solvang by 10:45 AM</b><span>Two and a half to three hours in normal traffic, and Southern California traffic is rarely normal. This protects the 3:00 PM entry.</span></div>
       <details>
         <summary>Hour by hour</summary>
         <ol class="slots">
@@ -533,6 +549,7 @@
       <h3>Universal, the Hollywood Sign and the Walk of Fame</h3>
       <p>Universal is the day; Hollywood is the bonus on the way to the coast. General Admission means an early arrival matters more than anything else you do.</p>
       <div class="meta"><span class="tag drive">59 miles</span><span class="tag park">Universal, general admission</span><span class="tag">Hollywood Sign</span></div>
+      <div class="deadline"><b>Check out and roll by 6:45 AM</b><span>Checkout happens before you leave, not after. Bags ride with you all day.</span></div>
       <div class="flag">You start this day in Anaheim, not Santa Monica. Check out of Home2 by 11:00 &mdash; do it before you leave at 6:45 &mdash; and the bags ride with you all day, because the Santa Monica room won&rsquo;t be ready until afternoon. Universal&rsquo;s lockers are small.</div>
       <div class="flag">Oct 7 is a <b>Halloween Horror Nights</b> night. The day park closes early &mdash; 5:00 or 6:00 &mdash; and October weekdays have been opening at 10:00, not 8:30. Universal posts hours about four weeks out, so Oct 7&rsquo;s should be on the calendar now. If the gate is 10:00, everything in the morning slides ninety minutes and the Studio Tour rule below still holds; your 4:30 departure clears the early close either way.</div>
       <details>
@@ -550,7 +567,7 @@
           <li><span class="t">2:45&ndash;4:30</span><span class="s">Everything left &mdash; Simpsons, Minions, Secret Life of Pets, repeats, character photos, shopping</span></li>
           <li><span class="t">4:30&ndash;5:00</span><span class="s">CityWalk to decompress before the drive</span></li>
           <li><span class="t">5:00&ndash;5:40</span><span class="s">Drive to Lake Hollywood Park</span></li>
-          <li><span class="t">5:40&ndash;6:15</span><span class="s">Hollywood Sign from Lake Hollywood Park &mdash; close view, no hike, a lawn and a playground. Street parking only, so allow slack.</span></li>
+          <li><span class="t">5:40&ndash;6:15</span><span class="s">Hollywood Sign from Lake Hollywood Park &mdash; close view, no hike, a lawn and a playground. Street parking only, so allow slack.<span class="lines"><a href="https://www.google.com/maps/search/?api=1&amp;query=Lake+Hollywood+Park,+3160+Canyon+Lake+Dr,+Los+Angeles,+CA+90068">Map</a></span></span></li>
           <li><span class="t">6:15&ndash;6:35</span><span class="s">Down to Hollywood Boulevard. Park once and leave the car there.</span></li>
           <li><span class="t">6:35&ndash;7:30</span><span class="s">Walk of Fame, TCL Chinese Theatre, Dolby Theatre. Pick a compact stretch &mdash; the full corridor is far longer than you want.</span></li>
           <li><span class="t">7:30&ndash;8:15</span><span class="s">Easy dinner near the Boulevard. No reservation tonight.</span></li>
@@ -600,6 +617,7 @@
       <h3>Santa Monica, then home</h3>
       <p>One last look at the Pacific, a good breakfast, and a comfortable buffer at LAX. Nothing new gets added today.</p>
       <div class="meta"><span class="tag">Santa Monica Pier</span><span class="tag drive">10 miles to LAX</span><span class="tag fly">LAX 1:08 PM</span></div>
+      <div class="deadline"><b>Car at SIXT by 11:00 AM</b><span>Then a shuttle before you are anywhere near the terminal. Leave the hotel at 10:05 on the clock, not on the GPS estimate.</span></div>
       <details>
         <summary>Hour by hour</summary>
         <ol class="slots">
@@ -609,7 +627,7 @@
           <li><span class="t">9:15&ndash;9:35</span><span class="s">Down onto the beach for one last look at the ocean</span></li>
           <li><span class="t">9:35&ndash;9:50</span><span class="s">Back to the hotel, final room and car check</span></li>
           <li><span class="t">9:50&ndash;10:05</span><span class="s">Check out. Have the rental return address loaded before you pull away.</span></li>
-          <li><span class="t">10:05&ndash;10:50</span><span class="s">Drive to SIXT at 5251 W 98th St. Not the terminal garage &mdash; load that address, not &ldquo;LAX rental return.&rdquo;<b>Return is booked for 11:00 AM. Leave on the clock, not on the GPS estimate.</b></span></li>
+          <li><span class="t">10:05&ndash;10:50</span><span class="s">Drive to SIXT at 5251 W 98th St. Not the terminal garage &mdash; load that address, not &ldquo;LAX rental return.&rdquo;<b>Return is booked for 11:00 AM. Leave on the clock, not on the GPS estimate.</b><span class="lines"><a href="https://www.google.com/maps/search/?api=1&amp;query=5251+W+98th+St,+Los+Angeles,+CA+90045">Map</a><a href="tel:+18887498227">SIXT 888-749-8227</a></span></span></li>
           <li><span class="t">10:50&ndash;11:25</span><span class="s">Hand over the car, then the shuttle to the terminal. This leg is the one people forget to budget for.</span></li>
           <li><span class="t">11:25&ndash;11:50</span><span class="s">Bag drop and security</span></li>
           <li><span class="t">11:50&ndash;12:45</span><span class="s">Buffer. Lunch, restrooms, settle at the gate.</span></li>
@@ -665,6 +683,23 @@
     <li>Recheck before you go: Highway 1 south of Big Sur (closed for fire as of Sept 13, see Oct 5), Universal&rsquo;s posted hours for Oct 7, and that all three Bash tickets are in the app.</li>
     <li>Time zone: Pacific is two hours behind Jackson the whole trip. Mornings are the easy part &mdash; a 7:00 alarm is 9:00 at home. Nights are the cost: landing at 9:50 PM on Oct 2 is 11:50 on the body clock, and the party ending at 11:00 is 1:00 AM.</li>
   </ul>
+
+  <h2>If something breaks</h2>
+  <div class="stay">
+    <div class="nights">Flights</div>
+    <div class="place">United<small>Rebooking, delays, a missed connection at Houston</small><span class="lines"><a href="tel:+18008648331">800-864-8331</a></span></div>
+    <div class="status">24 hours</div>
+  </div>
+  <div class="stay">
+    <div class="nights">The car</div>
+    <div class="place">SIXT<small>A late landing on Oct 2, or anything wrong at the LAX return</small><span class="lines"><a href="tel:+18887498227">888-749-8227</a></span></div>
+    <div class="status">Jessica&rsquo;s name</div>
+  </div>
+  <div class="stay">
+    <div class="nights">Highway 1</div>
+    <div class="place">Caltrans<small>Road conditions, voice-activated. Check the night before Big Sur and again at breakfast.</small><span class="lines"><a href="tel:+18004277623">800-427-7623</a><a href="https://quickmap.dot.ca.gov/">QuickMap</a></span></div>
+    <div class="status">Oct 5</div>
+  </div>
 
   <h2>The basics</h2>
   <div class="facts">
