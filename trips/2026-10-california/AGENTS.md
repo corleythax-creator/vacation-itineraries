@@ -244,6 +244,19 @@ already right, upgraded in place.
 Card-to-date mapping is `DAY=[1,3,4,4,6]`, indexes into Oct 2–8: San Francisco on Oct 3,
 Monterey on Oct 5, Solvang and Anaheim on Oct 6, Santa Monica on Oct 8.
 
+**Flight speed and fuel** (added Sept 13). Speed is block speed — the scheduled gate-to-gate
+times already on the page divided into the distances — which is why it reads 221 to 401 mph
+against a cruise speed near 500. Fuel is estimated seat-miles per gallon: about 33 for the
+350-mile Jackson hops on a 76-seat regional jet, 70–72 for the long narrowbody legs, 59 across
+the trip, or ~63 gallons per seat. The fleet-wide anchor is 67 available seat-miles per gallon
+(US airlines, 2024), so the legs sit either side of it, and the short hops are the bad case
+because climb dominates a 350-mile sector. Treat all four as estimates; aircraft type is not
+confirmed for these specific flights, only inferred from "United Express" and the seat map.
+
+The comparison in the note is the payoff and it is robust to the uncertainty: the rental car
+carries three people at 30 mpg, so 90 passenger-miles per gallon — better per person than any
+flight leg. The whole drive burns about 22 gallons; one Houston–San Francisco seat burns 23.
+
 **Average mph is moving time, not elapsed** — stops removed. Elapsed-time speeds would read
 6 mph for the Oct 4 sightseeing loop, which is true and useless. The figures are planning
 estimates, not measurements: 17 hours behind the wheel over five driving days, 38 mph overall.

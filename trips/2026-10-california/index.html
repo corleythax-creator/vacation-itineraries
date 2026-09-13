@@ -130,6 +130,7 @@
   tr.total td{font-family:var(--display);font-weight:800;font-size:19px;border-bottom:none;border-top:1px solid var(--rule);color:var(--poppy);padding-top:14px}
   .mileage-note{margin-top:16px;color:var(--sand);font-size:15px;max-width:60ch}
   .speed{color:var(--sand);font-variant-numeric:tabular-nums}
+  th .wide{display:inline}
   tr.total .speed{color:var(--poppy)}
 
   .wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px;margin-top:24px}
@@ -222,6 +223,7 @@
     footer{font-size:15.5px}
     td{font-size:19px}
     th{font-size:15px}
+    th .wide{display:none}
     h2{font-size:17px}
   }
 </style>
@@ -661,7 +663,7 @@
 
   <h2>Distance</h2>
   <table>
-    <thead><tr><th>Day</th><th>Driving</th><th>Miles</th><th>Avg mph</th></tr></thead>
+    <thead><tr><th>Day</th><th>Driving</th><th>Miles</th><th><span class="wide">Avg </span>mph</th></tr></thead>
     <tbody>
       <tr><td class="day-col">Oct 2</td><td class="leglabel">SFO to Hotel Caza</td><td>14</td><td class="speed">28</td></tr>
       <tr><td class="day-col">Oct 3</td><td class="leglabel">San Francisco on foot and by rideshare</td><td>0</td><td class="speed">&mdash;</td></tr>
@@ -683,15 +685,19 @@
   <p class="mileage-note"><b>Fuel: roughly 20&cent; a mile, about $130 for the trip.</b> California regular averaged $5.93 a gallon on Sept 11, 2026, and a non-hybrid midsize SUV returns about 30 mpg. If SIXT actually hands you a 2026 RAV4 &mdash; hybrid only now, 41 mpg combined &mdash; it drops to 14&cent; a mile and about $95. Either way it is 16 to 22 gallons. Gas in Big Sur is scarce and priced accordingly, so fill up in Marina before you leave on Oct 5.</p>
 
   <table>
-    <thead><tr><th>Day</th><th>Flying</th><th>Miles</th></tr></thead>
+    <thead><tr><th>Day</th><th>Flying</th><th>Miles</th><th><span class="wide">Avg </span>mph</th><th>mpg<span class="wide">/seat</span></th></tr></thead>
     <tbody>
-      <tr><td class="day-col">Oct 2</td><td class="leglabel">Jackson to Houston</td><td>350</td></tr>
-      <tr><td class="day-col">Oct 2</td><td class="leglabel">Houston to San Francisco</td><td>1,633</td></tr>
-      <tr><td class="day-col">Oct 8</td><td class="leglabel">Los Angeles to Houston</td><td>1,377</td></tr>
-      <tr><td class="day-col">Oct 8</td><td class="leglabel">Houston to Jackson</td><td>350</td></tr>
-      <tr class="total"><td></td><td>In the air</td><td>3,710</td></tr>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">Jackson to Houston</td><td>350</td><td class="speed">221</td><td class="speed">33</td></tr>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">Houston to San Francisco</td><td>1,633</td><td class="speed">393</td><td class="speed">72</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Los Angeles to Houston</td><td>1,377</td><td class="speed">401</td><td class="speed">70</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Houston to Jackson</td><td>350</td><td class="speed">226</td><td class="speed">34</td></tr>
+      <tr class="total"><td></td><td>In the air</td><td>3,710</td><td class="speed">346</td><td class="speed">59</td></tr>
     </tbody>
   </table>
+
+  <p class="mileage-note"><b>Speed is gate to gate</b>, so it reads well below the roughly 500 mph these aircraft cruise at &mdash; taxi, climb and descent are in the number. It is also why the two Jackson hops look slow: 350 miles is barely enough to get up and back down.</p>
+  <p class="mileage-note"><b>Fuel is per seat, and estimated.</b> The Houston legs are full narrowbodies on long sectors, which is the efficient case; the Jackson hops are 76-seat regional jets spending most of a short flight climbing, which is the worst case. Across all four legs it averages about 59 miles per gallon per seat, or roughly 63 gallons each &mdash; 190 gallons to move the three of you there and back. US airlines averaged 67 available seat-miles per gallon in 2024, so these numbers sit either side of the fleet.</p>
+  <p class="mileage-note">Worth a look: the rental car does <b>90 passenger-miles per gallon</b> with three of you aboard at 30 mpg &mdash; better, per person, than any leg of the flight. The whole 647-mile drive burns about 22 gallons. One Houston-to-San Francisco seat burns 23.</p>
 
   <h2>Weather</h2>
   <div class="wx">
