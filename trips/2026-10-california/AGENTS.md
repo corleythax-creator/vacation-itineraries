@@ -70,6 +70,8 @@ screenshot shows a morning pickup again, that's a regression, not new informatio
 ### Ride heights
 
 Dexter is about 4'7" (55 inches), which clears **every** height minimum at both parks. The
+number is deliberately kept here and off the page — the dashboard says only that he clears
+every minimum. The
 tallest anywhere on the itinerary are 48 inches — Incredicoaster at Disney California
 Adventure, Revenge of the Mummy and Forbidden Journey at Universal. Both ride plans state
 this rather than gating rides by height; if he is measured shorter at the gate, the plans
@@ -113,7 +115,10 @@ below it.
 - One `<script>` block: the countdown, and a `markToday()` that highlights the current day's card and auto-opens its schedule during the trip.
 - Hour-by-hour schedules use native `<details>`/`<summary>` — no JS needed to expand.
 - **No `localStorage`, `sessionStorage`, or any browser storage.** The page is stateless by design.
-- Mobile breakpoint at 760px scales type **up** — these get read on phones.
+- Mobile breakpoint at 760px scales type **up** — these get read on phones, which is where
+  this dashboard is opened nearly all the time. Body runs 20.5px there against 17px on
+  desktop, and every small-print class is scaled with it rather than left at its desktop
+  size. Checked for overflow at 320 through 760px with every collapsible open.
 - **Hero sizing is deliberate.** The countdown column is `minmax(0,max-content)` and the
   route map is capped at 184px so the two sit as one cluster. The `minmax` matters: with
   a plain `max-content` track the countdown never yields, so enlarged type (a wider font
