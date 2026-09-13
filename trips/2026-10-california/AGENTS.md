@@ -91,7 +91,7 @@ Alcatraz, Hearst Castle, Beverly Hills, Griffith Observatory, Venice, Malibu. Th
 
 ### What's on the page
 
-Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note) → driving and flight mileage tables → logistics notes → summary facts → open items.
+Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note; Oct 6 also carries a collapsible ride plan) → driving and flight mileage tables → logistics notes → summary facts → open items.
 
 That is the source order, and it is what phones and windows under 1080px show. At
 1080px and up the lodging block is grid-placed into the space beside the hero, so the
@@ -178,3 +178,11 @@ in a private browser window.
 
 **Recheck close to the trip**
 Highway 1 conditions through Big Sur (Caltrans), Universal park hours, Disney's final Bash entertainment lineup, the Solvang Trolley schedule.
+
+The **Oct 6 ride plan** is written from how the Bash has run in recent seasons, not from a
+published 2026 lineup. Everything in it with a time or a number attached needs confirming:
+the roughly 6:30 and 9:00 parade showings, whether Guardians runs its Monsters After Dark
+overlay, which rides stay open during the party, and every height minimum. The strategy
+underneath it — spend the 3:00-6:00 head start on Radiator Springs Racers and Incredicoaster,
+leave the low-wait rides and the party-exclusive overlay for after 6:00 — holds regardless of
+what the lineup turns out to be.
