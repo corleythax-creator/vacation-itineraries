@@ -46,7 +46,9 @@ placement, never by moving the markup: source order stays the reading order for 
 narrow windows and screen readers.
 
 **Mobile first.** These get read on phones, standing in a parking lot. The mobile
-breakpoint at 760px scales type up, not down. The countdown comes before decorative
+breakpoint at 760px scales type up, not down, and it covers the small print too — labels,
+chips, statuses, table headers, footnotes. Those are the sizes that fail in a parking lot,
+and they are the easiest ones to leave behind when only body text gets bumped. The countdown comes before decorative
 artwork — a tall graphic stacked above it pushes the clock off the first screen.
 
 ## Starting a new trip
