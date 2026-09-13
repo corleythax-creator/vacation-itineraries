@@ -189,8 +189,22 @@ in a private browser window.
 - PDF's Oct 7 morning drives **Santa Monica → Universal**, but Santa Monica is that night's hotel. The real start is **Anaheim → Universal**, 33 miles. Page corrects this and adds the checkout-before-you-leave step, since bags ride along all day.
 - PDF names the Hilton Santa Monica as the Oct 7 hotel, implying a booking that doesn't exist yet.
 
-**Recheck close to the trip**
-Highway 1 conditions through Big Sur (Caltrans), Universal park hours, Disney's final Bash entertainment lineup, the Solvang Trolley schedule.
+**Checked on Sept 13, 2026** — what was confirmed and what changed on the page as a result.
+
+| Item | Finding | Page |
+|---|---|---|
+| Oogie Boogie Bash, Oct 6 | Confirmed party night, 6–11 PM, entry from 3:00. Sold out in advance. | Open item added: tickets in the app |
+| Bash entertainment | Frightfully Fun Parade is gone. Madame Leota's Swinging Wake street party at **8:05 and 10:15**. Villains Grove, Monsters After Dark, Radiator Screams and Mickey's Trick and Treat (3:30 / 4:30 shows covered by the party ticket) all confirmed. Eleven treat trails. | Oct 6 timeline and ride plan rebuilt around the two showtimes |
+| Halloween Horror Nights, Oct 7 | **Oct 7 is an event night.** Day park closes 5:00–6:00; event opens 7:00. October weekdays have been opening at 10:00. | Flag on Oct 7; rope-drop heading no longer says 8:30 |
+| Highway 1, Big Sur | **Closed to through traffic** from Kirk Creek Campground (PM 19) to Willow Springs (PM 10.5) for the Plaskett Fire, no reopening estimate. Northern section reopened Sept 10; Nepenthe reopened; Bixby reachable. Pfeiffer Big Sur and Andrew Molera closed until further notice. McWay Falls Overlook Trail closed through 2026 for a retaining wall — roadside view only. | Oct 5 flag carries the out-and-back Plan B: McWay, turn around, Salinas, 101 — about 300 miles |
+| Solvang Trolley | Horse-drawn tour runs **weekends and holidays only, 12:00–5:00**. Oct 5 is a Monday, Oct 6 a Tuesday. | Both trolley slots replaced; chip removed |
+| SIXT at SFO | Open 24 hours. The 10:30 PM pickup is fine. | — |
+| 17-Mile Drive | Sources disagree between $12.25 and $12.50; the $35 restaurant refund is consistent. | Left at $12.50 |
+| Time zone note | Was backwards — mornings in California are *easier* on a Central body clock, not harder. The cost is the nights. | Rewritten |
+| "Holiday-weekend Friday" on Oct 2 | No holiday that weekend; Columbus Day is Oct 12. | Removed |
+
+**Still to recheck before departure**
+Highway 1 south of Big Sur (Caltrans QuickMap the night before and the morning of), Universal's posted hours for Oct 7, and that all three Bash tickets are in the Disneyland app. Everything else above was verified against sources dated September 2026.
 
 The **Oct 7 ride plan** assumes the 8:30 rope drop the timeline protects. Confirm Universal's
 2026 park hours, whether Oct 7 is a Halloween Horror Nights night (the day park closes early
