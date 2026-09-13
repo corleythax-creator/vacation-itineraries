@@ -230,6 +230,29 @@ Each day with a hard deadline carries a `.deadline` band above its schedule, sta
 and what breaks if it slips. Oct 3 has none on purpose: it is the one day with no deadline,
 and inventing one would dilute the other six.
 
+### Weather strip, packing, speed and fuel (added Sept 13)
+
+The weather strip is the page's **only network call**, and the page is correct without it.
+Five cards ship with October normals baked into the HTML; one `fetch` to Open-Meteo
+(keyless, CORS-open, free for non-commercial use) replaces them with a real forecast and
+relabels each card "Forecast". Any failure — offline, a non-200, the trip still outside the
+16-day forecast window — leaves the normals in place and changes nothing else. Tested all
+three paths with a mocked response, an aborted request and a 400. No storage, so it re-fetches
+on every load. If you ever add another fetch, hold it to the same rule: static content that is
+already right, upgraded in place.
+
+Card-to-date mapping is `DAY=[1,3,4,4,6]`, indexes into Oct 2–8: San Francisco on Oct 3,
+Monterey on Oct 5, Solvang and Anaheim on Oct 6, Santa Monica on Oct 8.
+
+**Average mph is moving time, not elapsed** — stops removed. Elapsed-time speeds would read
+6 mph for the Oct 4 sightseeing loop, which is true and useless. The figures are planning
+estimates, not measurements: 17 hours behind the wheel over five driving days, 38 mph overall.
+
+**Fuel** is $5.93/gal (California regular, AAA, Sept 11 2026) over ~30 mpg for a non-hybrid
+midsize SUV: 20¢/mile, ~$130 for 647 miles. The 2026 RAV4 is hybrid-only at 41 mpg combined,
+which is 14¢/mile and ~$95 — the page gives both because "RAV4 or similar" could be either.
+Re-price before departure; California moves fast.
+
 **Still to recheck before departure**
 Highway 1 south of Big Sur (Caltrans QuickMap the night before and the morning of), Universal's posted hours for Oct 7, and that all three Bash tickets are in the Disneyland app. Everything else above was verified against sources dated September 2026.
 

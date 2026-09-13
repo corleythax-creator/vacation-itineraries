@@ -27,6 +27,12 @@ from disk.
 locator plus a last name is enough for a stranger to modify or cancel a booking.
 Confirmations stay in email, never in the repo and never on the page.
 
+**Network calls degrade, or don't ship.** A dashboard may fetch live data — California 2026
+pulls a forecast from Open-Meteo, keyless — but only where the page is already correct
+without it. Bake the static answer into the HTML, upgrade it in place on success, and leave
+it alone on any failure. No API keys in a public file, and test the offline path before you
+ship it: these pages get opened in parking lots.
+
 **No browser storage.** No `localStorage`, no `sessionStorage`. The pages are
 stateless so they behave the same on every device the family opens them on.
 

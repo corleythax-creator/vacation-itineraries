@@ -129,6 +129,19 @@
   td.day-col{font-family:var(--display);font-size:13px;color:var(--sand);white-space:nowrap}
   tr.total td{font-family:var(--display);font-weight:800;font-size:19px;border-bottom:none;border-top:1px solid var(--rule);color:var(--poppy);padding-top:14px}
   .mileage-note{margin-top:16px;color:var(--sand);font-size:15px;max-width:60ch}
+  .speed{color:var(--sand);font-variant-numeric:tabular-nums}
+  tr.total .speed{color:var(--poppy)}
+
+  .wx{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px;margin-top:24px}
+  .wxc{border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+  .wxc b{display:block;font-family:var(--display);font-size:13.5px;font-weight:600;color:var(--fog)}
+  .wxc .wxd{font-family:var(--display);font-size:12.5px;color:var(--sand);margin-top:2px}
+  .wxc .wxt{display:block;font-family:var(--display);font-size:23px;font-weight:800;color:var(--poppy);letter-spacing:-.02em;margin-top:9px;font-variant-numeric:tabular-nums}
+  .wxc .wxl{display:block;font-family:var(--display);font-size:12px;color:var(--sand);margin-top:4px}
+
+  .pack{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:4px 34px;margin-top:4px}
+  .pack h4{font-family:var(--display);font-size:14px;font-weight:600;color:var(--sand);margin:22px 0 0;letter-spacing:.02em}
+  .pack .notes{margin-top:4px;max-width:none}
 
   .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;margin-top:30px}
   .fact b{display:block;font-family:var(--display);font-size:13px;font-weight:600;color:var(--sand);margin-bottom:5px}
@@ -198,6 +211,11 @@
     .fact b{font-size:14.5px}
     .fact p{font-size:21px}
     .notes li{font-size:20px}
+    .wxc b{font-size:15.5px}
+    .wxc .wxd{font-size:14px}
+    .wxc .wxt{font-size:25px}
+    .wxc .wxl{font-size:13.5px}
+    .pack h4{font-size:15.5px}
     .mileage-note{font-size:19px}
     .empty{font-size:19px}
     .empty b{font-size:16.5px}
@@ -643,24 +661,26 @@
 
   <h2>Distance</h2>
   <table>
-    <thead><tr><th>Day</th><th>Driving</th><th>Miles</th></tr></thead>
+    <thead><tr><th>Day</th><th>Driving</th><th>Miles</th><th>Avg mph</th></tr></thead>
     <tbody>
-      <tr><td class="day-col">Oct 2</td><td class="leglabel">SFO to Hotel Caza</td><td>14</td></tr>
-      <tr><td class="day-col">Oct 3</td><td class="leglabel">San Francisco on foot and by rideshare</td><td>0</td></tr>
-      <tr><td class="day-col">Oct 4</td><td class="leglabel">Battery Spencer, bridge, Crissy, Palace, Presidio</td><td>22</td></tr>
-      <tr><td class="day-col">Oct 4</td><td class="leglabel">San Francisco to Pebble Beach gate</td><td>115</td></tr>
-      <tr><td class="day-col">Oct 4</td><td class="leglabel">17-Mile Drive, Carmel, on to Marina</td><td>28</td></tr>
-      <tr><td class="day-col">Oct 5</td><td class="leglabel">Marina to Solvang via Big Sur</td><td>220</td></tr>
-      <tr><td class="day-col">Oct 6</td><td class="leglabel">Solvang to Anaheim</td><td>175</td></tr>
-      <tr><td class="day-col">Oct 6</td><td class="leglabel">Hotel to Disney and back</td><td>4</td></tr>
-      <tr><td class="day-col">Oct 7</td><td class="leglabel">Anaheim to Universal City</td><td>33</td></tr>
-      <tr><td class="day-col">Oct 7</td><td class="leglabel">Universal to Lake Hollywood to the Boulevard</td><td>10</td></tr>
-      <tr><td class="day-col">Oct 7</td><td class="leglabel">Hollywood to Santa Monica</td><td>16</td></tr>
-      <tr><td class="day-col">Oct 8</td><td class="leglabel">Santa Monica to LAX</td><td>10</td></tr>
-      <tr class="total"><td></td><td>Behind the wheel</td><td>647</td></tr>
+      <tr><td class="day-col">Oct 2</td><td class="leglabel">SFO to Hotel Caza</td><td>14</td><td class="speed">28</td></tr>
+      <tr><td class="day-col">Oct 3</td><td class="leglabel">San Francisco on foot and by rideshare</td><td>0</td><td class="speed">&mdash;</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">Battery Spencer, bridge, Crissy, Palace, Presidio</td><td>22</td><td class="speed">24</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">San Francisco to Pebble Beach gate</td><td>115</td><td class="speed">51</td></tr>
+      <tr><td class="day-col">Oct 4</td><td class="leglabel">17-Mile Drive, Carmel, on to Marina</td><td>28</td><td class="speed">24</td></tr>
+      <tr><td class="day-col">Oct 5</td><td class="leglabel">Marina to Solvang via Big Sur</td><td>220</td><td class="speed">37</td></tr>
+      <tr><td class="day-col">Oct 6</td><td class="leglabel">Solvang to Anaheim</td><td>175</td><td class="speed">58</td></tr>
+      <tr><td class="day-col">Oct 6</td><td class="leglabel">Hotel to Disney and back</td><td>4</td><td class="speed">12</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Anaheim to Universal City</td><td>33</td><td class="speed">33</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Universal to Lake Hollywood to the Boulevard</td><td>10</td><td class="speed">17</td></tr>
+      <tr><td class="day-col">Oct 7</td><td class="leglabel">Hollywood to Santa Monica</td><td>16</td><td class="speed">21</td></tr>
+      <tr><td class="day-col">Oct 8</td><td class="leglabel">Santa Monica to LAX</td><td>10</td><td class="speed">20</td></tr>
+      <tr class="total"><td></td><td>Behind the wheel</td><td>647</td><td class="speed">38</td></tr>
     </tbody>
   </table>
   <p class="mileage-note">Straight up I-5, San Francisco to Los Angeles is about 380 miles. The coast route costs you roughly 265 extra, nearly all of it on the Oct 5 Big Sur leg.</p>
+  <p class="mileage-note"><b>Average mph is moving time, not elapsed</b> &mdash; stops are taken out, or the sightseeing legs would read like walking pace. They are estimates for planning: 51 on the open 101, 37 through Big Sur because Highway 1 will not let you go faster, and the teens and twenties everywhere you are threading a city. Seventeen hours behind the wheel across five driving days.</p>
+  <p class="mileage-note"><b>Fuel: roughly 20&cent; a mile, about $130 for the trip.</b> California regular averaged $5.93 a gallon on Sept 11, 2026, and a non-hybrid midsize SUV returns about 30 mpg. If SIXT actually hands you a 2026 RAV4 &mdash; hybrid only now, 41 mpg combined &mdash; it drops to 14&cent; a mile and about $95. Either way it is 16 to 22 gallons. Gas in Big Sur is scarce and priced accordingly, so fill up in Marina before you leave on Oct 5.</p>
 
   <table>
     <thead><tr><th>Day</th><th>Flying</th><th>Miles</th></tr></thead>
@@ -672,6 +692,56 @@
       <tr class="total"><td></td><td>In the air</td><td>3,710</td></tr>
     </tbody>
   </table>
+
+  <h2>Weather</h2>
+  <div class="wx">
+    <div class="wxc" id="wx0"><b>San Francisco</b><span class="wxd">Oct 3, city day</span><span class="wxt">70&deg; / 56&deg;</span><span class="wxl">October normal</span></div>
+    <div class="wxc" id="wx1"><b>Monterey coast</b><span class="wxd">Oct 5, Big Sur</span><span class="wxt">71&deg; / 54&deg;</span><span class="wxl">October normal</span></div>
+    <div class="wxc" id="wx2"><b>Solvang</b><span class="wxd">Oct 6, morning</span><span class="wxt">80&deg; / 47&deg;</span><span class="wxl">October normal</span></div>
+    <div class="wxc" id="wx3"><b>Anaheim</b><span class="wxd">Oct 6, Bash night</span><span class="wxt">82&deg; / 61&deg;</span><span class="wxl">October normal</span></div>
+    <div class="wxc" id="wx4"><b>Santa Monica</b><span class="wxd">Oct 8, last morning</span><span class="wxt">67&deg; / 58&deg;</span><span class="wxl">October normal</span></div>
+  </div>
+  <p class="mileage-note" id="wxnote">Typical October highs and lows. A live forecast from Open-Meteo replaces them here automatically once the trip falls inside the 16-day window &mdash; from about Sept 22. If the page cannot reach the network, the normals stay.</p>
+  <p class="mileage-note">The spread is the thing to plan for: Solvang swings more than thirty degrees between afternoon and dawn, Anaheim stays hot into a party that runs to 11 PM, and the two coastal stops never get warm. Universal City sits in the Valley and runs hotter than either coast.</p>
+
+  <h2>What to pack</h2>
+  <div class="pack">
+    <div>
+      <h4>For the swing</h4>
+      <ul class="notes">
+        <li>A light jacket or fleece for all three, every single day</li>
+        <li>Layers you can shed by noon once you turn inland</li>
+        <li>Long pants for coastal evenings &mdash; the wind off the water does the work, not the temperature</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Park days, Oct 6 and 7</h4>
+      <ul class="notes">
+        <li>Broken-in shoes. Two park days back to back, and Oct 7 is when fatigue shows up</li>
+        <li>A battery pack and a cable each &mdash; wait times, tickets and photos all run off the phone</li>
+        <li>Sunscreen and hats for the Universal day, which is almost entirely outdoors</li>
+        <li>A dry shirt or a poncho. Jurassic World soaks you and you have a hotel to drive to</li>
+        <li>Costumes if you want them. Adults may dress up at the Bash, which is not true on an ordinary Disney day</li>
+      </ul>
+    </div>
+    <div>
+      <h4>The car and Big Sur</h4>
+      <ul class="notes">
+        <li>Snacks and full water bottles before Oct 5. Services are thin and gas is expensive</li>
+        <li>Something for motion sickness &mdash; Highway 1 is curves for two hours</li>
+        <li>Offline maps downloaded before you leave Carmel; cell service south of there is unreliable</li>
+        <li>A car charger, not just the wall one</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Do not leave without</h4>
+      <ul class="notes">
+        <li>Jessica&rsquo;s license and a credit card in her name. The rental is hers and the counter will not budge</li>
+        <li>All three Bash tickets loaded in the Disneyland app before you leave Solvang</li>
+        <li>IDs for the flight, and the chargers swept off the nightstand every morning</li>
+      </ul>
+    </div>
+  </div>
 
   <h2>Worth knowing</h2>
   <ul class="notes">
@@ -764,6 +834,34 @@
     var el = document.querySelector('.day[data-date="'+key+'"]');
     if(el){ el.classList.add('today'); var dt=el.querySelector('details'); if(dt) dt.open=true; }
   }
+
+  // Weather: replace the October normals with a real forecast when one exists.
+  // No key, no storage, and the page is correct if this never runs.
+  (function(){
+    if(!window.fetch) return;
+    var LAT='37.806,36.684,34.596,33.808,34.019', LON='-122.418,-121.802,-120.138,-117.919,-118.491';
+    var DAY=[1,3,4,4,6];   // index into Oct 2-8 for each card
+    var url='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON
+      +'&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+      +'&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles'
+      +'&start_date=2026-10-02&end_date=2026-10-08';
+    fetch(url).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); }).then(function(data){
+      var list = Object.prototype.toString.call(data)==='[object Array]' ? data : [data], hit=0;
+      for(var n=0;n<DAY.length;n++){
+        var d = list[n] && list[n].daily, card = document.getElementById('wx'+n);
+        if(!d || !card) continue;
+        var hi = d.temperature_2m_max && d.temperature_2m_max[DAY[n]];
+        var lo = d.temperature_2m_min && d.temperature_2m_min[DAY[n]];
+        if(hi===null || hi===undefined || lo===null || lo===undefined) continue;
+        var pop = d.precipitation_probability_max ? d.precipitation_probability_max[DAY[n]] : null;
+        card.querySelector('.wxt').textContent = Math.round(hi)+'\u00B0 / '+Math.round(lo)+'\u00B0';
+        card.querySelector('.wxl').textContent = 'Forecast' + (pop===null||pop===undefined ? '' : ' \u00B7 '+Math.round(pop)+'% rain');
+        hit++;
+      }
+      if(hit){ document.getElementById('wxnote').textContent =
+        'Live forecast from Open-Meteo, fetched fresh every time this page opens. If the network is unreachable, October normals show instead.'; }
+    })['catch'](function(){ /* normals are already on the page */ });
+  })();
 
   document.getElementById('foot').textContent =
     'Flight times are local to each airport. Driving miles are road distances, rounded. Confirmation numbers are not listed here \u2014 the page is public.';
