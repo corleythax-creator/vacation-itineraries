@@ -51,6 +51,11 @@ own — California puts the hotels beside the countdown above 1080px. Do it with
 placement, never by moving the markup: source order stays the reading order for phones,
 narrow windows and screen readers.
 
+**Give a long page a spine.** Past roughly fifteen phone screens, a dashboard needs a way to
+move around it — California uses a sticky row of section chips below 760px, with ids on every
+heading and `scroll-margin-top` so headings clear the bar. Sticky chrome must be opaque;
+translucent bars let body text read through them.
+
 **Mobile first.** These get read on phones, standing in a parking lot. The mobile
 breakpoint at 760px scales type up, not down, and it covers the small print too — labels,
 chips, statuses, table headers, footnotes. Those are the sizes that fail in a parking lot,

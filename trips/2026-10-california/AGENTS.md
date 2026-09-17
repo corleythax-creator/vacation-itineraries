@@ -266,6 +266,30 @@ midsize SUV: 20¢/mile, ~$130 for 647 miles. The 2026 RAV4 is hybrid-only at 41 
 which is 14¢/mile and ~$95 — the page gives both because "RAV4 or similar" could be either.
 Re-price before departure; California moves fast.
 
+### The phone pass (Sept 17)
+
+The page had grown to **24.6 screens** at 390px with no way to move around it. Four changes,
+all scoped to phones; desktop renders identically to before.
+
+- **A sticky jump bar** under the masthead, shown only at 760px and below: one horizontally
+  scrollable row of section chips. Every `h2` has an id, and `h2,.day{scroll-margin-top:62px}`
+  keeps a heading from landing under the bar. Tapping a chip also scrolls that chip into view
+  inside the bar, so the row tracks roughly where you are. The bar is **opaque** on purpose —
+  at 93% alpha the body text read straight through it.
+- **Schedule rows stack under 520px.** The old `104px 1fr` grid left the text about 226px to
+  live in, roughly 22 characters a line. The time now sits on its own line in poppy and the
+  words get the full screen.
+- **Tables lose their header row under 520px** and become one block per leg: date, leg name on
+  its own line, then the numbers with their units attached via `td[data-l]::after`. That is what
+  the `data-l` attributes are for — do not strip them, the units vanish on phones.
+- **The methodology prose folded into `<details class="howfig">`** under each table, cutting
+  about 650px of explanation that nobody reads standing in a parking lot. The numbers stay
+  visible; the arithmetic is one tap away.
+
+Media query order matters: `max-width:520px` must come **after** `max-width:760px` in the
+stylesheet, since they have equal specificity and the later one wins. Moving it earlier
+silently disables the stacking.
+
 **Still to recheck before departure**
 Highway 1 south of Big Sur (Caltrans QuickMap the night before and the morning of), Universal's posted hours for Oct 7, and that all three Bash tickets are in the Disneyland app. Everything else above was verified against sources dated September 2026.
 
