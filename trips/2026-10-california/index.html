@@ -45,19 +45,9 @@
   .unit span{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--sand)}
   .hero-note{margin:22px 0 0;color:var(--sand);font-size:15px;max-width:36ch}
 
-  .coast{justify-self:start;width:100%;max-width:184px}
-  .coast svg{width:100%;height:auto;display:block}
-  .coastline{fill:none;stroke:var(--kelp);stroke-width:2;opacity:.55}
-  .route{fill:none;stroke:var(--poppy);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 7}
-  .stop{fill:var(--dusk);stroke:var(--poppy);stroke-width:2.5}
-  .stop-label{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--fog)}
-  .sea{font-family:var(--body);font-style:italic;font-size:15px;fill:var(--kelp);opacity:.75}
-  @media (prefers-reduced-motion:no-preference){
-    .route{animation:draw 2.4s ease-out .3s both}
-    @keyframes draw{from{stroke-dasharray:0 900}to{stroke-dasharray:4 7}}
-    .stop{animation:pop .5s ease-out both}
-  }
-  @keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+  .coast{justify-self:start;width:100%;max-width:184px;min-width:0}
+  .coast svg{width:100%;height:auto;display:block;border-radius:100px 100px 18px 18px;
+    border:1px solid rgba(242,160,61,.3);box-shadow:0 16px 40px rgba(0,0,0,.2)}
 
   h2{font-family:var(--display);font-weight:600;font-size:15px;color:var(--sand);margin:56px 0 0;padding-bottom:10px;border-bottom:1px solid var(--rule)}
   .jump{display:none}
@@ -195,7 +185,7 @@
     body{font-size:22px}
     .masthead p{font-size:16.5px}
     .hero{grid-template-columns:1fr;gap:24px;padding-top:24px}
-    .coast{justify-self:center;max-width:200px}
+    .coast{justify-self:center;max-width:260px}
     .lede{font-size:22.5px}
     .unit span{font-size:13.5px}
     .hero-note{font-size:19px}
@@ -244,7 +234,6 @@
     th{font-size:15px}
     th .wide{display:none}
     h2{font-size:17px}
-    .coast{max-width:168px}
     /* Twenty-odd screens of page on a phone, so give it a spine to thumb along */
     .jump{display:flex;gap:8px;position:sticky;top:0;z-index:5;margin:14px -24px 0;padding:9px 24px;
       overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -309,25 +298,61 @@
       <p class="hero-note" id="heroNote">Until UA 4348 pushes back from Jackson, 5:20 PM on Oct 2.</p>
     </div>
 
-    <div class="coast" aria-hidden="true">
-      <svg viewBox="16 10 264 490" xmlns="http://www.w3.org/2000/svg" role="img">
-        <path class="coastline" d="M70 18 C88 52 98 74 104 100 C112 130 98 158 112 188 C124 214 132 240 146 268 C162 302 166 338 184 362 C208 392 238 404 272 406 C264 434 246 458 238 492"/>
-        <path class="route" d="M104 100 C110 140 104 164 116 192 C128 220 136 244 148 268 C162 300 168 334 180 358 C204 386 224 398 244 414 C240 424 234 430 228 436"/>
-        <g>
-          <circle class="stop" cx="104" cy="100" r="5.5" style="animation-delay:.6s"/>
-          <circle class="stop" cx="116" cy="192" r="5.5" style="animation-delay:.9s"/>
-          <circle class="stop" cx="148" cy="268" r="5.5" style="animation-delay:1.2s"/>
-          <circle class="stop" cx="180" cy="358" r="5.5" style="animation-delay:1.5s"/>
-          <circle class="stop" cx="244" cy="414" r="5.5" style="animation-delay:1.8s"/>
-          <circle class="stop" cx="228" cy="436" r="5.5" style="animation-delay:2.1s"/>
+    <div class="coast">
+      <svg viewBox="0 0 320 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="coast-title coast-desc">
+        <title id="coast-title">California coast adventure</title>
+        <desc id="coast-desc">A sunset travel poster with the Golden Gate Bridge, Pacific waves, a winding coastal road and palm trees.</desc>
+        <defs>
+          <linearGradient id="coast-sky" x2="0" y2="1">
+            <stop stop-color="#193b51"/><stop offset=".5" stop-color="#b66d52"/><stop offset="1" stop-color="#f2b868"/>
+          </linearGradient>
+          <linearGradient id="coast-ocean" x2="0" y2="1">
+            <stop stop-color="#3eaaa0"/><stop offset="1" stop-color="#12384b"/>
+          </linearGradient>
+          <linearGradient id="coast-sun" x2="0" y2="1">
+            <stop stop-color="#fff0b6"/><stop offset="1" stop-color="#ef9d51"/>
+          </linearGradient>
+          <clipPath id="coast-clip"><rect width="320" height="440" rx="16"/></clipPath>
+          <g id="coast-palm" fill="#102b36">
+            <path d="M0 0Q-9 43-4 93H5Q-3 44 4 0Z"/>
+            <path d="M1 2Q-36-24-49 8Q-24-3 1 2M1 2Q-19-37-39-23Q-13-16 1 2M1 2Q9-38 28-32Q8-16 1 2M1 2Q38-26 48 0Q25-9 1 2M1 2Q33 5 35 26Q17 8 1 2M1 2Q-28 6-31 27Q-10 9 1 2"/>
+          </g>
+        </defs>
+        <g clip-path="url(#coast-clip)">
+          <rect width="320" height="440" fill="url(#coast-sky)"/>
+          <circle cx="164" cy="153" r="62" fill="url(#coast-sun)"/>
+          <g fill="none" stroke="#f8d19b" stroke-linecap="round" opacity=".5">
+            <path d="M24 147H96M216 132H285M230 148H301M49 174H117"/>
+          </g>
+          <path d="M0 206L37 190 62 198 100 178 130 197 172 189 214 207 270 187 320 196V262H0Z" fill="#3c6466"/>
+          <path d="M0 222Q100 212 164 230T320 227V440H0Z" fill="url(#coast-ocean)"/>
+          <!-- Golden Gate silhouette, stylized rather than a geographic route. -->
+          <g stroke="#ad4a39" fill="none">
+            <path d="M-15 234L271 218" stroke-width="8"/>
+            <path d="M51 246V165M65 246V165M213 233V152M227 233V152" stroke-width="6"/>
+            <path d="M51 179H65M51 194H65M213 166H227M213 183H227" stroke-width="5"/>
+            <path d="M-10 208Q23 209 58 170Q137 248 220 158Q252 202 279 204" stroke-width="3"/>
+            <path d="M16 208V232M36 191V230M86 193V229M109 207V227M133 215V226M157 212V224M181 195V223M200 176V221M246 189V220M264 200V219" stroke-width="1.5"/>
+          </g>
+          <g stroke="#a1d9c5" fill="none" stroke-linecap="round" opacity=".55">
+            <path d="M24 263H110M42 275H142M7 304H76M15 333H102M51 350H124"/>
+          </g>
+          <path d="M320 241Q224 240 234 277T183 323Q166 340 208 360T167 440H320Z" fill="#d6ad76"/>
+          <path d="M320 249Q244 247 249 280T206 325Q193 340 230 359T205 440H320Z" fill="#35675b"/>
+          <path d="M300 246Q249 271 272 292T232 333Q225 348 260 369T247 440" fill="none" stroke="#a6ad98" stroke-width="30"/>
+          <path d="M300 246Q249 271 272 292T232 333Q225 348 260 369T247 440" fill="none" stroke="#183743" stroke-width="23"/>
+          <path d="M300 246Q249 271 272 292T232 333Q225 348 260 369T247 440" fill="none" stroke="#edc888" stroke-width="2" stroke-dasharray="9 10"/>
+          <use href="#coast-palm" transform="translate(291 263) rotate(7) scale(.9)"/>
+          <use href="#coast-palm" transform="translate(26 354) rotate(-12) scale(.85)"/>
+          <path d="M0 398Q75 365 173 412L208 440H0Z" fill="#102b36"/>
+          <g font-family="Arial, sans-serif" text-anchor="middle">
+            <text x="160" y="57" fill="#fff0d3" font-size="12" font-weight="700" letter-spacing="4">THE GOLDEN STATE</text>
+            <text x="160" y="91" fill="#fff3dc" font-size="32" font-weight="800" letter-spacing="-1">California</text>
+            <text x="160" y="112" fill="#ffe2b5" font-size="11" letter-spacing="2.4">COASTING INTO OCTOBER</text>
+            <text x="111" y="409" fill="#f4ce91" font-size="12" font-weight="700" letter-spacing="2">OCT 02 — 08</text>
+            <text x="111" y="426" fill="#9fbeaf" font-size="9" letter-spacing="1.5">SAN FRANCISCO → LOS ANGELES</text>
+          </g>
         </g>
-        <text class="stop-label" x="118" y="96">San Francisco</text>
-        <text class="stop-label" x="130" y="188">Monterey</text>
-        <text class="stop-label" x="162" y="264">Big Sur</text>
-        <text class="stop-label" x="194" y="354">Solvang</text>
-        <text class="stop-label" x="180" y="404">Anaheim</text>
-        <text class="stop-label" x="124" y="452">Santa Monica</text>
-        <text class="sea" x="24" y="250">Pacific</text>
       </svg>
     </div>
   </section>
