@@ -101,11 +101,11 @@ Alcatraz, Hearst Castle, Beverly Hills, Griffith Observatory, Venice, Malibu. Th
 
 ### What's on the page
 
-Live countdown → coast route SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note; Oct 6 and Oct 7 also carry collapsible ride plans) → driving and flight mileage tables → logistics notes → summary facts → open items.
+Live countdown → California travel-poster SVG → flights → lodging → rental car → day-by-day (each with a collapsible hour-by-hour, must-do strip, and a "cut this first" note; Oct 6 and Oct 7 also carry collapsible ride plans) → driving and flight mileage tables → logistics notes → summary facts → open items.
 
 That is the source order, and it is what phones and windows under 1080px show. At
 1080px and up the lodging block is grid-placed into the space beside the hero, so the
-top of the page reads countdown / route map / hotels as one band and Flights starts
+top of the page reads countdown / travel poster / hotels as one band and Flights starts
 below it.
 
 ### Architecture
@@ -119,22 +119,20 @@ below it.
   this dashboard is opened nearly all the time. Body runs 22px there against 17px on
   desktop, and every small-print class is scaled with it rather than left at its desktop
   size. Checked for overflow at 320 through 760px with every collapsible open.
-- **Hero sizing is deliberate.** The countdown column is `minmax(0,max-content)` and the
-  route map is capped at 184px so the two sit as one cluster. The `minmax` matters: with
-  a plain `max-content` track the countdown never yields, so enlarged type (a wider font
-  than the fallback, or text-only zoom) crushes the map instead — at 1.8x it went down to
-  78px. Now the clock wraps, which it is built to do, and the map keeps its size; the map's viewBox (`16 10 264 490`)
-  is cropped to the drawing's real bounds, and the stop labels are 15px in viewBox units
-  so they still render ~11px at that size. Widening the map or restoring a fractional
-  grid re-opens the ~250px of dead air this replaced. On mobile the countdown comes
-  first and the map follows — don't put `order:-1` back on `.coast`, it pushed the clock
-  below the fold on a 390&times;844 phone.
+- **Hero artwork (updated Sept 20).** The thin route map was replaced at the user's
+  request with an inline California travel-poster SVG: sunset, Golden Gate Bridge,
+  ocean, coastal road and palms. It is decorative, not a geographic route map.
+  Keep it inline so the single-file page works offline. Its accessible title and
+  description are linked with `aria-labelledby`. The countdown column remains
+  `minmax(0,max-content)`; artwork is capped at 184px (236px on wide desktop),
+  and 260px on phones. The countdown comes first on mobile — never move the
+  artwork ahead of it. No animation or extra network calls are needed.
 - **The lodging band above 1080px** is CSS only. `.wrap` becomes a two-column grid,
   everything spans both columns, and `.hero` and `.sleep` are placed into row 2 — so the
   hotels move without touching source order, and a screen reader still reads flights
   before hotels. The placement is by row number and assumes the masthead is row 1 and
   the hero row 2; inserting anything above the masthead breaks it. Inside that band the
-  map grows to 236px, since the hotel column, not the countdown, sets the band's height.
+  poster grows to 236px, since the hotel column, not the countdown, sets the band's height.
 
 ### Countdown logic
 
