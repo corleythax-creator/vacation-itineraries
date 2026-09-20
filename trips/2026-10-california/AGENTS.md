@@ -290,6 +290,36 @@ Media query order matters: `max-width:520px` must come **after** `max-width:760p
 stylesheet, since they have equal specificity and the later one wins. Moving it earlier
 silently disables the stacking.
 
+### Icon and Add to Home Screen (Sept 20)
+
+The artwork the user supplied lives as four files beside `index.html`, generated from the
+original 1254px square by drawing it through a canvas in headless Chromium — there is no image
+library on the box, so that is the conversion route if they ever need regenerating.
+
+| File | Use | Size |
+|---|---|---|
+| `icon-32.png` | favicon | 3 KB |
+| `icon-180.png` | `apple-touch-icon`, iOS home screen | 84 KB |
+| `icon-192.jpg` | manifest, Android | 18 KB |
+| `icon-512.jpg` | manifest, Android splash | 80 KB |
+
+JPEG for the two big ones: the same 512 as PNG was 578 KB against 80. The 180 stays PNG
+because that is what Apple documents.
+
+Two deliberate choices in `manifest.webmanifest`:
+
+- **`"display": "minimal-ui"`**, not `standalone`. Chrome still counts it as installable, and
+  the window keeps a back button.
+- **`apple-mobile-web-app-capable` is deliberately absent.** With it set, iOS opens the page in
+  a chromeless window, and this page is mostly links out to Google Maps and `tel:` numbers —
+  one tap and a family member is stuck with no back gesture. Without it they get the icon on the
+  home screen and a normal Safari window. That is the right trade for this page; do not "fix" it.
+
+The button itself: hidden by default in CSS, revealed by script only when the page is **not**
+already running standalone. Chrome's `beforeinstallprompt` is captured and fired on click;
+everywhere else the click opens step-by-step instructions, with separate iOS and Android/desktop
+wording. Tested at all four paths — no prompt, iOS UA, already installed, prompt available.
+
 **Still to recheck before departure**
 Highway 1 south of Big Sur (Caltrans QuickMap the night before and the morning of), Universal's posted hours for Oct 7, and that all three Bash tickets are in the Disneyland app. Everything else above was verified against sources dated September 2026.
 

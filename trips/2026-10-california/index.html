@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>California, October 2026</title>
+<link rel="icon" href="icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10263A">
+<meta name="apple-mobile-web-app-title" content="California">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
@@ -56,6 +61,16 @@
 
   h2{font-family:var(--display);font-weight:600;font-size:15px;color:var(--sand);margin:56px 0 0;padding-bottom:10px;border-bottom:1px solid var(--rule)}
   .jump{display:none}
+  .addhome{display:none;align-items:center;flex:0 0 auto;gap:10px;margin-top:16px;padding:6px 15px 6px 6px;
+    border:1px solid var(--rule);border-radius:999px;background:rgba(233,238,236,.04);
+    font-family:var(--display);font-size:13.5px;font-weight:600;color:var(--fog);cursor:pointer}
+  .addhome img{width:28px;height:28px;border-radius:8px;display:block}
+  .addhome:hover{border-color:rgba(242,160,61,.5);color:var(--poppy)}
+  .addsteps{flex:0 0 100%;margin-top:12px;border:1px solid var(--rule);border-radius:10px;padding:15px 17px;
+    max-width:54ch;color:var(--sand);font-size:15px}
+  .addsteps b{color:var(--fog);font-family:var(--display);font-size:14px}
+  .addsteps ol{margin:8px 0 0;padding-left:20px}
+  .addsteps li{margin:6px 0}
   @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
   .day{display:grid;grid-template-columns:112px 1fr;gap:0 26px;padding:30px 0;border-bottom:1px solid var(--rule)}
@@ -238,6 +253,10 @@
     .jump a{flex:0 0 auto;font-family:var(--display);font-size:14.5px;font-weight:600;color:var(--sand);
       text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:7px 14px}
     .jump a:active{color:var(--poppy);border-color:rgba(242,160,61,.5)}
+    .addhome{font-size:15.5px;padding:7px 17px 7px 7px}
+    .addhome img{width:32px;height:32px}
+    .addsteps{font-size:17.5px;max-width:none}
+    .addsteps b{font-size:16px}
     h2,.day{scroll-margin-top:62px}
   }
 
@@ -268,6 +287,10 @@
   <header class="masthead">
     <h1>Jackson to California</h1>
     <p>October 2&ndash;8, 2026 &nbsp;/&nbsp; Corley, Jessica and Dexter</p>
+    <button class="addhome" id="addhome" type="button" aria-expanded="false" aria-controls="addsteps">
+      <img src="icon-180.png" alt="" width="28" height="28">Add to Home Screen
+    </button>
+    <div class="addsteps" id="addsteps" hidden></div>
   </header>
 
   <nav class="jump" aria-label="Jump to a section">
@@ -884,6 +907,35 @@
     var el = document.querySelector('.day[data-date="'+key+'"]');
     if(el){ el.classList.add('today'); var dt=el.querySelector('details'); if(dt) dt.open=true; }
   }
+
+  // Add to Home Screen. Chrome hands us a real install prompt; Safari has no such API,
+  // so there the button explains the Share-sheet route instead. Hidden outright once the
+  // page is already running from the home screen.
+  (function(){
+    var btn=document.getElementById('addhome'), panel=document.getElementById('addsteps'), deferred=null;
+    if(!btn) return;
+    var standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+    if(standalone) return;
+    btn.style.display='inline-flex';
+    window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred=e; });
+    var ua=navigator.userAgent||'';
+    var ios=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+    var steps= ios
+      ? '<b>On iPhone or iPad</b><ol><li>Tap the Share button in Safari &mdash; the square with an arrow coming out of the top.</li><li>Scroll down the list and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>. The sunset icon lands on your home screen and opens this page.</li></ol>'
+      : '<b>On Android or a computer</b><ol><li>Open your browser menu &mdash; the three dots.</li><li>Choose <b>Add to Home screen</b>, or <b>Install</b> if you see it. On a computer the same thing lives as a small install icon at the right of the address bar.</li></ol>';
+    btn.addEventListener('click', function(){
+      if(deferred){
+        var d=deferred; deferred=null; btn.style.display='none'; d.prompt();
+        if(d.userChoice&&d.userChoice.then){ d.userChoice.then(function(c){
+          if(!c||c.outcome!=='accepted'){ btn.style.display='inline-flex'; } }); }
+        return;
+      }
+      var opening=panel.hidden;
+      if(opening&&!panel.innerHTML) panel.innerHTML=steps;
+      panel.hidden=!opening;
+      btn.setAttribute('aria-expanded', opening?'true':'false');
+    });
+  })();
 
   // Weather: replace the October normals with a real forecast when one exists.
   // No key, no storage, and the page is correct if this never runs.

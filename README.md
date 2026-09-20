@@ -8,9 +8,14 @@ self-contained `index.html` per trip, deployed to Vercel.
 ```
 trips/
   YYYY-MM-<place>/
-    index.html     the dashboard — single file, no build, no dependencies
-    AGENTS.md      handoff context: the trip facts, the deploy setup, open items
-    assets/        optional — screenshots, PDFs, confirmations (gitignored if sensitive)
+    index.html            the dashboard — one file, no build, no dependencies
+    manifest.webmanifest  name, colours and icons for Add to Home Screen
+    icon-32.png           favicon
+    icon-180.png          iOS home screen
+    icon-192.jpg          Android home screen
+    icon-512.jpg          Android splash and store-style listings
+    AGENTS.md             handoff context: the trip facts, the deploy setup, open items
+    assets/               optional — screenshots, PDFs, confirmations (gitignored if sensitive)
 ```
 
 Folders sort chronologically because they lead with the year and month. A trip
@@ -21,7 +26,16 @@ as reference for the next one.
 
 **Single file.** Each dashboard is one `index.html` with inline CSS and JS. No
 framework, no build step, no npm. It should open correctly by double-clicking it
-from disk.
+from disk. The icon files and the manifest are the sole exception — iOS will not take a
+home-screen icon from a data URI, so those have to be real files. They are still static;
+nothing is compiled.
+
+**Add to Home Screen.** Each trip ships an icon set and a button that offers to install the
+page. Chrome gets the native prompt through `beforeinstallprompt`; Safari has no such API, so
+there the button opens the Share-sheet instructions instead. The button hides itself once the
+page is running from the home screen. Keep `display` at `minimal-ui` and leave
+`apple-mobile-web-app-capable` unset: these pages are mostly outbound links to maps and phone
+numbers, and a full standalone window strands you with no way back.
 
 **No confirmation numbers.** These pages get shared as public links. A record
 locator plus a last name is enough for a stranger to modify or cancel a booking.

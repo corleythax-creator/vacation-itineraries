@@ -1,0 +1,15 @@
+{
+  "name": "California, October 2026",
+  "short_name": "California",
+  "description": "Trip dashboard for the Thaxton family's California trip, October 2-8, 2026.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "minimal-ui",
+  "background_color": "#10263A",
+  "theme_color": "#10263A",
+  "icons": [
+    { "src": "icon-192.jpg", "sizes": "192x192", "type": "image/jpeg" },
+    { "src": "icon-512.jpg", "sizes": "512x512", "type": "image/jpeg" },
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

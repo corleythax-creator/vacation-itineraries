@@ -12,7 +12,10 @@ its own `AGENTS.md` with that trip's specifics; read both.
 - **Never enable Vercel deployment protection** on a trip project. Family members
   open these links without Vercel accounts.
 - **No browser storage** in any dashboard. No `localStorage`, no `sessionStorage`.
-- **Single file per trip.** If a change would require a build step, find another way.
+- **Single file per trip.** If a change would require a build step, find another way. The one
+  allowed exception is the home-screen icon set: a phone cannot use an icon that only exists as
+  a data URI, so `icon-*.png|jpg` and `manifest.webmanifest` sit next to the HTML. Static files,
+  no build. Nothing else earns its own file.
 
 ## Editing a dashboard
 
